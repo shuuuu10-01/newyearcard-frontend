@@ -28,18 +28,8 @@ export default {
   position: relative;
   height: 100%;  
 }
-.gif .text-zoon {
-  position: absolute;
-  width: 60%;
-  height: 39%;
-  top: 25%;
-  left: 39%;
-}
-.gif .text-zoon p {
-  text-align: left;
-  box-sizing: inherit;
+.gif vue-freezeframe {
   width: 100%;
-  word-break: break-all;
-  font-size: 3vw;
 }
+
 </style>
