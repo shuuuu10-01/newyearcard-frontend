@@ -4,9 +4,9 @@
       <p>NewMaker</p>
     </div>
     <div class="u-icon">
-      <img :src="icon" v-show="isLogin"/>
+      <img :src="geticon" v-if="getlogin"/>
     </div>
-    <button @click="login" v-show="!isLogin">ログイン</button>
+    <button @click="login" v-if="!getlogin">ログイン</button>
   </header>
 </template>
 
@@ -15,18 +15,13 @@ export default {
   data () {
     return {
       icon: "",
-      isLogin: false
+      isLogin: true
     }
   },
   methods: {
     login() {
-      console.log(this.icon)
       this.geticon()
     },
-    geticon() {
-      this.icon = this.$store.state.user.photoURL
-      this.isLogin = this.$store.state.isLogin
-    }
   },
   mounted: function() {
     if (this.$store.state.isLogin) {
@@ -36,6 +31,15 @@ export default {
     }
     else {
       console.log(this.icon)
+    }
+  },
+  computed: {
+    geticon() {
+      console.log(this.$store.getters.getphotoURL,"change")
+      return this.$store.getters.getphotoURL
+    },
+    getlogin() {
+      return this.$store.getters.getisLogin
     }
   }
 }

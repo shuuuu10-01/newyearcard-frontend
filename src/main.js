@@ -21,17 +21,16 @@ Vue.use(VueFreezeframe);
 const app = () => {
   firebase.auth().onAuthStateChanged((currentUser) => {
     if (currentUser) {
-      console.log(currentUser);
       store.commit("setUser", currentUser);
     } else {
       store.commit("setUser", null);
     }
   }),
-    new Vue({
-      router,
-      store,
-      render: (h) => h(App),
-    }).$mount("#app");
+  new Vue({
+    router,
+    store,
+    render: (h) => h(App),
+  }).$mount("#app");
 };
 // 関数実行
 app();
