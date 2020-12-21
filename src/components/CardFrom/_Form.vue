@@ -161,7 +161,7 @@ export default {
 <style scoped>
 .form-wrap {
   background-color: rgba(214, 75, 11,0.85);
-  /* box-shadow:10px 10px 0px rgba(0, 0, 0, 0.275); */
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 4px 4px 4px rgba(0, 0, 0, 0.19);
   border-radius: 5px;
   height: auto;
   width: 90%;
