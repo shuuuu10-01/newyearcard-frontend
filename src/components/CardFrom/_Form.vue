@@ -88,6 +88,7 @@ export default {
           console.log(response)
           if(response.data.status == "SUCCESS"){
           //作ったカードのページへ遷移
+          this.updateText("");
           this.$router.push({ path: `/card/${response.data.data.id}/show`});
           }
         }).catch (()=>{
