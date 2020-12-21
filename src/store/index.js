@@ -11,6 +11,11 @@ export default new Vuex.Store({
       photoURL: "",
       uid: "",
     },
+    form: {
+      text:"",
+      gif: "",
+      share: "",
+    },
     isLogin: false //ログインしているかどうか
   },
   mutations: { //stateの値の変更
@@ -23,11 +28,13 @@ export default new Vuex.Store({
       state.user.uid = currentUser.providerData[0].uid;
       if (currentUser !== null){
         state.isLogin = true
-        console.log("first")
       } else {
         state.isLogin = false;
       }
     },
+    setGif(state,value){ //gif画像の選択結果の保存
+      state.form.gif = value
+    }
   },
   getters: {
     get_photoURL(state) {

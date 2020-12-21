@@ -3,28 +3,7 @@
     <br>
     <h1>年賀状の作成</h1>
     <form class="form" @submit.prevent>
-      <div key="flickity">
-        <hooper
-          class="hooper-sample__hooper"
-          :settings="hooperSettings"
-          >
-          <slide>
-            <Gif class="carousel" aria-hidden="false" _src="/Gif/card01.gif"/>
-            <label><input type="radio" class="gif-radio" name="gif" value="card01" v-on:input="setGif($event.target.value)">年賀状01</label>
-          </slide>
-          <slide>
-            <Gif class="carousel" aria-hidden="false" _src="/Gif/card01.gif"/>
-            <label><input type="radio" class="gif-radio" name="gif" value="card02" v-on:input="setGif($event.target.value)">年賀状02</label>
-          </slide>
-          <slide>
-            <Gif class="carousel" aria-hidden="false" _src="/Gif/card01.gif"/>
-            <label class="gif-radio"><input type="radio" name="gif" value="card03" v-on:input="setGif($event.target.value)">年賀状03</label>
-          </slide>
-          <br>
-          <hooper-pagination slot="hooper-addons"/>
-          <hooper-navigation slot="hooper-addons"></hooper-navigation>
-        </hooper>
-      </div>
+      <hooper/>
       <div class="form-input">
         <textarea type="text" name="message" placeholder="Message" v-model="card.text" required></textarea>
       </div>
@@ -52,29 +31,12 @@
 </template>
 
 <script>
-// import Flickity from 'vue-flickity-2';
-// import 'vue-flickity-2/dist/vue-flickity-2.css';
-
-import { 
-  Hooper, 
-  Slide, 
-  Pagination as HooperPagination,
-  Navigation as HooperNavigation 
-} from 'hooper';
-import 'hooper/dist/hooper.css';
-import Gif from './__Gif.vue'
 import Gifpre from '../Gif/__Gif.vue'
+import Hooper from './__Hooper.vue'
 
 export default {
   data () {
     return  {
-      hooperSettings: {
-        itemsToShow: 1,
-        wheelControl: false,
-        touchDrag: true,
-        infiniteScroll: true,
-        centerMode: true
-      },
       preview: false,
       words: [],
       api_url: "",
@@ -89,13 +51,8 @@ export default {
     }
   },
   components: {
-    // 'flickity':Flickity,
-    Gif,
     Gifpre,
     Hooper,
-    Slide,
-    HooperPagination,
-    HooperNavigation
   },
   methods: {
     doPreview () {
@@ -133,9 +90,6 @@ export default {
         })
       }
     },
-    setGif (value) {
-      this.card.gif = value
-    },
   },
   computed: {
      _share: {
@@ -172,6 +126,7 @@ export default {
   background-color: white;
   border-radius: 30px;
   width: 50%;
+  font-size: 4vw;
 }
 .form p {
   margin: 0;
