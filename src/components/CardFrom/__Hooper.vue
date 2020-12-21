@@ -10,7 +10,7 @@
       </slide>
       <slide>
         <gif _src="/Gif/card01.gif"/>
-        <label><input type="radio" class="gif-radio" name="gif" value="card01" @input="setGif($event.target.value)">年賀状02</label>
+        <label><input type="radio" class="gif-radio" name="gif" value="card02" @input="setGif($event.target.value)">年賀状02</label>
       </slide>
       <slide>
         <gif _src="/Gif/card01.gif"/>

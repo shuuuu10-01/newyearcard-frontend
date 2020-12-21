@@ -40,7 +40,6 @@ export default {
     },
     getData() {
       this.user = this.$store.state.user
-      console.log(this.$store.state)
     },
     friendship() { //cardを作成した人のuidとみる人のuidで関係性を確認
       this.axios.get(this.api_url+'3071362838/3190060951/friendships')
@@ -52,7 +51,6 @@ export default {
   },
   mounted: function (){
     this.api_url = process.env.VUE_APP_RAILS_API_TWITTER
-    this.getData()
   },
   computed: {
     geticon() {

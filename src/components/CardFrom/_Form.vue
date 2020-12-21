@@ -25,7 +25,7 @@
     </form>
     <div class="preview">
         <button @click="doPreview">preview</button>
-        <Gifpre _gif="card01" :_text="get_form.text" v-if="preview"/>
+        <Gifpre :_gif="get_form.gif" :_text="get_form.text" v-if="preview"/>
       </div>
   </div>
 </template>
