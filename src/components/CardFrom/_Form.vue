@@ -5,7 +5,7 @@
     <form class="form" @submit.prevent>
       <hooper/>
       <div class="form-input">
-        <textarea type="text" name="message" placeholder="Message" :value="get_form.text" @input="updateText" required></textarea>
+        <textarea type="text" name="message" placeholder="Message" :value="get_form.text" @input="updateText($event.target.value)" required></textarea>
       </div>
       <div class="cp_ipselect cp_sl04">
         <select v-model="_share" required>
@@ -25,7 +25,7 @@
     </form>
     <div class="preview">
         <button @click="doPreview">preview</button>
-        <Gifpre _gif="card01" :_text="card.text" v-if="preview"/>
+        <Gifpre _gif="card01" :_text="get_form.text" v-if="preview"/>
       </div>
   </div>
 </template>
@@ -50,8 +50,8 @@ export default {
     Hooper,
   },
   methods: {
-    updateText(e) {
-      this.$store.commit("setText",e.target.value)
+    updateText(value) {
+      this.$store.commit("setText",value)
     },
     doPreview () {
       this.preview = !this.preview
@@ -83,7 +83,8 @@ export default {
           console.log(response)
           if(response.data.status == "SUCCESS"){
           //作ったカードのページへ遷移
-          this.$router.push({ path: `/card/${response.data.data.id}/show`})
+          this.updateText("");
+          this.$router.push({ path: `/card/${response.data.data.id}/show`});
           }
         })
       }

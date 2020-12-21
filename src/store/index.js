@@ -14,7 +14,6 @@ export default new Vuex.Store({
     form: {
       text:"",
       gif: "",
-      share: "",
     },
     isLogin: false //ログインしているかどうか
   },
