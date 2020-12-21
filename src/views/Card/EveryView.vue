@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Gif from '../../components/Gif/__Gif.vue'
+import Gif from '../../components/Gif/CompleteGif.vue'
 export default {
   data () {
     return {

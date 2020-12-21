@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import Gifpre from '../Gif/__Gif.vue'
+import Gifpre from '../Gif/CompleteGif.vue'
 import Hooper from './__Hooper.vue'
 
 export default {
