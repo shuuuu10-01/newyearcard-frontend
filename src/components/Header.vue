@@ -21,11 +21,12 @@ export default {
           result => {
             console.log("signin",result.user)
             if (result.user) {
-              this.$store.commit("setUser", result.user);
+              this.$store.dispatch("setUser",result.user)
             } else {
-              this.$store.commit("setUser", null);
+              alert("エラーが発生しました。")
             }
-          })
+          }
+        )
     },
   },
   computed: {

@@ -32,6 +32,12 @@ export default new Vuex.Store({
         state.isLogin = false;
       }
     },
+    logoutUser(state) { //ログアウトの処理
+      state.user.displayName="";
+      state.user.photoURL="";
+      state.user.uid="";
+      state.isLogin = false;
+    },
     setGif(state,value){ //gif画像の選択結果の保存
       state.form.gif = value
     }
@@ -44,4 +50,12 @@ export default new Vuex.Store({
       return state.isLogin
     }
   },
+  actions: {
+    setUser({ commit }, currentUser) {
+      commit("setUser",currentUser)
+    },
+    logoutUser({ commit }){
+      commit("logoutUser")
+    }
+  }
 });

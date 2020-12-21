@@ -5,7 +5,7 @@
     <div class="signin">
       <button @click="signout">signout</button>
       <br>
-      <img :src="user.photoURL" />
+      <img :src="geticon" />
       <p>{{user.displayName}}</p>
       <button @click="getData">on</button>
       <button @click="friendship">friendship</button>
@@ -33,8 +33,8 @@ export default {
       firebase.auth().onAuthStateChanged( (user) => {
         firebase.auth().signOut().then(()=>{
           console.log(user.displayName+"ログアウトしました");
-          this.$store.state.isLogin = false
-          this.$store.state.user = null
+          this.$store.dispatch("logoutUser");
+          this.$router.go({path: this.$router.currentRoute.path, force: true})
         })
       });
     },
@@ -53,6 +53,11 @@ export default {
   mounted: function (){
     this.api_url = process.env.VUE_APP_RAILS_API_TWITTER
     this.getData()
+  },
+  computed: {
+    geticon() {
+      return this.$store.getters.get_photoURL
+    }
   }
 }
 </script>
