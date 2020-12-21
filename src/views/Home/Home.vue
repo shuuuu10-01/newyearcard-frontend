@@ -56,7 +56,7 @@ export default {
   },
   computed: {
     geticon() {
-      return this.$store.getters.get_photoURL
+      return this.$store.getters.get_user_photoURL
     }
   }
 }

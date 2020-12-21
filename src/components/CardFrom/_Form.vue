@@ -5,7 +5,7 @@
     <form class="form" @submit.prevent>
       <hooper/>
       <div class="form-input">
-        <textarea type="text" name="message" placeholder="Message" v-model="card.text" required></textarea>
+        <textarea type="text" name="message" placeholder="Message" :value="get_form.text" @input="updateText" required></textarea>
       </div>
       <div class="cp_ipselect cp_sl04">
         <select v-model="_share" required>
@@ -38,13 +38,8 @@ export default {
   data () {
     return  {
       preview: false,
-      words: [],
-      api_url: "",
       card: {
-        gif: "",
-        text: "",
         share: "",
-        name: "",
         dm: ""
       },
       dm: false
@@ -55,14 +50,17 @@ export default {
     Hooper,
   },
   methods: {
+    updateText(e) {
+      this.$store.commit("setText",e.target.value)
+    },
     doPreview () {
       this.preview = !this.preview
     },
     complete () {
-      if (this.$store.state.user.uid!=null) {
-        this.name = this.$store.state.user.uid
+      if (this.get_uid!=null) {
+        this.name = this.get_uid
       }
-      if (this.card.gif=="") {
+      if (this.get_form.gif=="") {
         alert("年賀状を選択してください")
         return 0;
       }
@@ -75,9 +73,9 @@ export default {
       }
       if(confirm("年賀状を作成してもよろしいですか？")){
         const data = {
-          text: this.card.text,
-          uid: this.card.name,
-          gif: this.card.gif,
+          text: this.get_form.text,
+          uid: this.get_uid,
+          gif: this.get_form.gif,
           share: this.card.dm
         }
         this.axios.post(this.api_url+'create',data)
@@ -92,23 +90,29 @@ export default {
     },
   },
   computed: {
-     _share: {
-       get() {
-         return this.card.share
-       },
-       set (value) {
-         if(value == 2){
-           this.card.share = value
-           this.dm = true
-         } else if (value == 0 || value == 1){
+    _share: {
+      get() {
+        return this.card.share
+      },
+      set (value) {
+        if(value == 2){
+          this.card.share = value
+          this.dm = true
+        } else if (value == 0 || value == 1){
           this.card.share = value
           this.dm = false
-         }
-       }
-     }
-  },
-  mounted: function(){
-    this.api_url = process.env.VUE_APP_RAILS_API_POSTS
+        }
+      }
+    },
+    get_uid() {
+      return this.$store.getters.get_user_uid
+    },
+    get_form() {
+      return this.$store.getters.get_form
+    },
+    api_url() {
+      return this.$store.getters.get_API_URL
+    }
   }
 }
 </script>
@@ -162,9 +166,6 @@ textarea {
   min-height: 100px;
   max-height: 120px;
   border: 2px solid #cfcfcf;
-}
-.gif-radio {
-  cursor: pointer;
 }
 .preview {
   width: 90%;
@@ -246,23 +247,5 @@ textarea {
 .cp_ipselect.cp_sl04 select {
 	padding: 8px 38px 8px 8px;
 	color:#575656;
-}
-
-
-/* Hooper */
-.hooper-sample__hooper{
-  cursor:grab;
-}
-.hooper-sample__hooper:active{
-  cursor:grabbing;
-}
-.hooper {
-  height: 100%;
-  width: 90%;
-  margin: auto;
-  padding-top: 10px;
-}
-.hooper-navigation{
-  margin-top: 30px;
 }
 </style>

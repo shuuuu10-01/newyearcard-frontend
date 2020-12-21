@@ -32,27 +32,42 @@ export default new Vuex.Store({
         state.isLogin = false;
       }
     },
+    setGif(state,value){ //gif画像の選択結果の保存
+      state.form.gif = value
+    },
+    setText(state,value) {
+      state.form.text = value
+    },
     logoutUser(state) { //ログアウトの処理
       state.user.displayName="";
       state.user.photoURL="";
       state.user.uid="";
       state.isLogin = false;
     },
-    setGif(state,value){ //gif画像の選択結果の保存
-      state.form.gif = value
-    }
   },
   getters: {
-    get_photoURL(state) {
+    get_user_photoURL(state) {
       return state.user.photoURL
+    },
+    get_user_uid(state){
+      return state.user.uid
+    },
+    get_form(state){
+      return state.form
     },
     get_isLogin(state) {
       return state.isLogin
+    },
+    get_API_URL(){
+      return process.env.VUE_APP_RAILS_API_POSTS
     }
   },
   actions: {
     setUser({ commit }, currentUser) {
       commit("setUser",currentUser)
+    },
+    setGif({ commit },value){
+      commit("setGif",value)
     },
     logoutUser({ commit }){
       commit("logoutUser")

@@ -6,15 +6,15 @@
       >
       <slide>
         <gif _src="/Gif/card01.gif"/>
-        <label><input type="radio" class="gif-radio" name="gif" value="card01" v-on:input="setGif($event.target.value)">年賀状01</label>
+        <label><input type="radio" class="gif-radio" name="gif" value="card01" @input="setGif($event.target.value)">年賀状01</label>
       </slide>
       <slide>
         <gif _src="/Gif/card01.gif"/>
-        <label><input type="radio" class="gif-radio" name="gif" value="card01" v-on:input="setGif($event.target.value)">年賀状02</label>
+        <label><input type="radio" class="gif-radio" name="gif" value="card01" @input="setGif($event.target.value)">年賀状02</label>
       </slide>
       <slide>
         <gif _src="/Gif/card01.gif"/>
-        <label class="gif-radio"><input type="radio" name="gif" value="card03" v-on:input="setGif($event.target.value)">年賀状03</label>
+        <label class="gif-radio"><input type="radio" name="gif" value="card03" @input="setGif($event.target.value)">年賀状03</label>
       </slide>
       <br>
       <hooper-pagination slot="hooper-addons"/>
@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     setGif(value) {
-      this.$store.commit("setGif",value)
+      this.$store.dispatch("setGif",value)
     }
   }
 }
