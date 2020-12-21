@@ -23,6 +23,7 @@ export default {
 <style>
 body { /* こいつのせいでヘッダーがおかしくなった */
   margin: 0;
+  background: url(../public/img/NewYear-背景.png);
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
