@@ -11,10 +11,21 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 export default {
   methods: {
     login() {
-      this.geticon()
+      const provider = new firebase.auth.TwitterAuthProvider()
+      firebase.auth().signInWithPopup(provider)
+        .then(
+          result => {
+            console.log("signin",result.user)
+            if (result.user) {
+              this.$store.commit("setUser", result.user);
+            } else {
+              this.$store.commit("setUser", null);
+            }
+          })
     },
   },
   computed: {
@@ -58,20 +69,18 @@ header .u-icon img {
   margin-right: 10px;
   box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
 }
-header .u-icon i {
+header .u-icon .login-button i {
   color: #55acee;
 }
-
 span.login-button {
   line-height: 45px;
   width: 100px;
   margin: 5px;
   cursor: pointer;
-	position: relative;
 	display: block;
 	text-align: center;
 	text-decoration: none;
-	color: rgb(77, 75, 75);
+	color:  #55acee;
 	background:#FFF;
 	border-bottom: 2px solid #55acee;
 	border-radius: 4px;

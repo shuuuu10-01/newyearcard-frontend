@@ -3,7 +3,6 @@
     <img alt="Vue logo" src="../../assets/logo.png">
     <API />
     <div class="signin">
-      <button @click="signin">signin</button>
       <button @click="signout">signout</button>
       <br>
       <img :src="user.photoURL" />
@@ -30,23 +29,12 @@ export default {
     API
   },
   methods: {
-    signin () {
-      const provider = new firebase.auth.TwitterAuthProvider()
-      firebase.auth().signInWithPopup(provider)
-        .then(
-          result => {
-            console.log(result)
-            this.$store.state.isLogin = true
-            this.$router.go({path: this.$router.currentRoute.path, force: true})
-          })
-    },
     signout () {
       firebase.auth().onAuthStateChanged( (user) => {
         firebase.auth().signOut().then(()=>{
           console.log(user.displayName+"ログアウトしました");
           this.$store.state.isLogin = false
           this.$store.state.user = null
-          this.$router.go({path: this.$router.currentRoute.path, force: true})
         })
       });
     },
