@@ -18,13 +18,17 @@ export default {
 </script>
 <style scoped>
 .loading{
+  z-index: 1;
   position: fixed;
   background-color: rgba(214, 75, 11);
   animation: slide 0.3s linear;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 @keyframes slide{
   0%{
@@ -39,7 +43,6 @@ export default {
 }
 .sk-folding-cube {
   z-index: 999;
-  top: 45%;                         /* 3 */
   margin: 20px auto;
   width: 50px;
   height: 50px;

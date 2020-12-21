@@ -27,13 +27,13 @@
       <button @click="doPreview">preview</button>
       <Gifpre :_gif="get_form.gif" :_text="get_form.text" v-if="preview"/>
     </div>
-    <loading :nowloading="loading"/>
+    <form-loading :nowloading="loading"/>
   </div>
 </template>
 
 <script>
 import Gifpre from '../Gif/CompleteGif.vue'
-import Loading from '../Loading/Loading.vue'
+import FormLoading from '../Loading/Form_Loading.vue'
 import Hooper from './__Hooper.vue'
 
 export default {
@@ -51,7 +51,7 @@ export default {
   components: {
     Gifpre,
     Hooper,
-    Loading,
+    FormLoading,
   },
   methods: {
     updateText(value) {
@@ -60,7 +60,7 @@ export default {
     doPreview () {
       this.preview = !this.preview
     },
-    complete () {
+    async complete () {
       if (this.get_uid!=null) {
         this.name = this.get_uid
       }
@@ -70,10 +70,16 @@ export default {
       }
       if(!this.dm) {
         this.card.dm = this.card.share
-      } 
-      if(this.card.dm=="") { 
-        alert("送りたい相手のtwitterIDを入力してください")
-        return 0;
+      } else {
+        //指定されたアカウントの確認
+        if(this.card.dm=="") {
+          alert("送りたい相手のtwitterIDを入力してください")
+          return 0;
+        } else {
+          this.checkDM().then(result=>{
+            console.log("DM",result)
+          })
+        }
       }
       if(confirm("年賀状を作成してもよろしいですか？")){
         this.loading = true
@@ -83,8 +89,8 @@ export default {
           gif: this.get_form.gif,
           share: this.card.dm
         }
-        this.axios.post(this.api_url+'create',data)
-        .then((response) => {
+        this.axios.post(this.get_API_URL+'create',data)
+        .then(response => {
           console.log(response)
           if(response.data.status == "SUCCESS"){
           //作ったカードのページへ遷移
@@ -119,9 +125,12 @@ export default {
     get_form() {
       return this.$store.getters.get_form
     },
-    api_url() {
+    get_API_URL() {
       return this.$store.getters.get_API_URL
-    }
+    },
+    get_api_twitter() {
+      return this.$store.getters.get_API_TWITTER
+    },
   }
 }
 </script>
