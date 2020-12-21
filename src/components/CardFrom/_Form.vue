@@ -24,14 +24,16 @@
       </div>
     </form>
     <div class="preview">
-        <button @click="doPreview">preview</button>
-        <Gifpre :_gif="get_form.gif" :_text="get_form.text" v-if="preview"/>
-      </div>
+      <button @click="doPreview">preview</button>
+      <Gifpre :_gif="get_form.gif" :_text="get_form.text" v-if="preview"/>
+    </div>
+    <loading :nowloading="loading"/>
   </div>
 </template>
 
 <script>
 import Gifpre from '../Gif/CompleteGif.vue'
+import Loading from '../Loading/Loading.vue'
 import Hooper from './__Hooper.vue'
 
 export default {
@@ -42,12 +44,14 @@ export default {
         share: "",
         dm: ""
       },
-      dm: false
+      dm: false,
+      loading: false
     }
   },
   components: {
     Gifpre,
     Hooper,
+    Loading,
   },
   methods: {
     updateText(value) {
@@ -72,6 +76,7 @@ export default {
         return 0;
       }
       if(confirm("年賀状を作成してもよろしいですか？")){
+        this.loading = true
         const data = {
           text: this.get_form.text,
           uid: this.get_uid,
@@ -83,9 +88,11 @@ export default {
           console.log(response)
           if(response.data.status == "SUCCESS"){
           //作ったカードのページへ遷移
-          this.updateText("");
           this.$router.push({ path: `/card/${response.data.data.id}/show`});
           }
+        }).catch (()=>{
+          alert("エラーが発生しました。")
+          this.loading = false
         })
       }
     },
