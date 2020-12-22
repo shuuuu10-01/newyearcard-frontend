@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import firebase from 'firebase'
 
 Vue.use(Vuex)
 
@@ -65,7 +66,20 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    setUser({ commit }, currentUser) {
+    async auth({ commit }) {
+      return new Promise(resolve => {
+        firebase.auth().onAuthStateChanged(currentUser => {
+          console.log(currentUser)
+          if (currentUser) {
+            commit("setUser", currentUser);
+          } else {
+            commit("logoutUser");
+          }
+          resolve()
+        })
+      })
+    },
+    async setUser({ commit }, currentUser) {
       commit("setUser",currentUser)
     },
     setGif({ commit },value){

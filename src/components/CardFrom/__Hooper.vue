@@ -6,15 +6,19 @@
       >
       <slide>
         <gif _src="/Gif/card01.gif"/>
-        <label><input type="radio" class="gif-radio" name="gif" value="card01" @input="setGif($event.target.value)">年賀状01</label>
+        <label class="gif-radio"><input type="radio" class="gif-radio" name="gif" value="card01" @input="setGif($event.target.value)">年賀状01</label>
       </slide>
       <slide>
-        <gif _src="/Gif/card01.gif"/>
-        <label><input type="radio" class="gif-radio" name="gif" value="card02" @input="setGif($event.target.value)">年賀状02</label>
+        <gif _src="/Gif/card02.gif"/>
+        <label class="gif-radio"><input type="radio" class="gif-radio" name="gif" value="card02" @input="setGif($event.target.value)">年賀状02</label>
       </slide>
       <slide>
-        <gif _src="/Gif/card01.gif"/>
-        <label class="gif-radio"><input type="radio" name="gif" value="card03" @input="setGif($event.target.value)">年賀状03</label>
+        <gif _src="/Gif/card03.gif"/>
+        <label class="gif-radio"><input type="radio" name="gif-radio" value="card03" @input="setGif($event.target.value)">年賀状03</label>
+      </slide>
+      <slide>
+        <gif _src="/Gif/card04.gif"/>
+        <label class="gif-radio"><input type="radio" name="gif-radio" value="card04" @input="setGif($event.target.value)">年賀状04</label>
       </slide>
       <br>
       <hooper-pagination slot="hooper-addons"/>

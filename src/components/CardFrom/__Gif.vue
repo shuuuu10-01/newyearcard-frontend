@@ -1,6 +1,7 @@
 <template>
   <div class="gif">
-    <vue-freezeframe 
+    <vue-freezeframe
+      class="gif-freeze"
       :src="_src"
       :options="{
         trigger: 'hover'
@@ -26,10 +27,12 @@ export default {
 <style scoped>
 .gif {
   position: relative;
-  height: 100%;  
-}
-.gif vue-freezeframe {
+  height: 100%;
   width: 100%;
+}
+.gif .gif-freeze {
+  width: 95%;
+  margin: auto;
 }
 
 </style>
