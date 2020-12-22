@@ -34,6 +34,8 @@ export default {
         this.card.share = response.data.data.share
         this.isShow = true
         console.log(this.card.share)
+      }).catch((response)=>{ //error処理
+        console.log(response)
       })
     },
     async checkUser() {
