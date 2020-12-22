@@ -1,12 +1,10 @@
 <template>
   <div class="gif">
     <vue-freezeframe
-      class="gif-freeze"
-      :src="_src"
       :options="{
         trigger: 'hover'
       }"
-    />
+    ><img class="gif-freeze" :src="_src"></vue-freezeframe>
   </div>
 </template>
 
