@@ -11,8 +11,8 @@
         <select v-model="_share" required>
           <option value="" hidden>公開範囲の設定</option>
           <option value="0">公開</option>
-          <option value="1">フォロワー限定</option>
-          <option value="2">フォロワーを指定</option>
+          <option value="1" v-if="get_login">フォロワー限定</option>
+          <option value="2" v-if="get_login">フォロワーを指定</option>
         </select>
       </div>
       <div class="dm" v-show="dm">
@@ -42,7 +42,8 @@ export default {
       preview: false,
       card: {
         share: "",
-        dm: ""
+        dm: "",
+        status:"",
       },
       dm: false,
       loading: false
@@ -68,26 +69,35 @@ export default {
         alert("年賀状を選択してください")
         return 0;
       }
-      if(!this.dm) {
-        this.card.dm = this.card.share
+      if(!this.dm) { //全体公開の場合
+        this.card.status = this.card.share
       } else {
         //指定されたアカウントの確認
-        if(this.card.dm=="") {
+        if(this.card.dm=="") { //限定公開の場合
           alert("送りたい相手のtwitterIDを入力してください")
           return 0;
         } else {
-          this.checkDM().then(result=>{
-            console.log("DM",result)
-          })
+          const check = await this.checkDM()
+          if(!check){
+            return 0;
+          }
         }
       }
+      console.log("c-DM")
+      const data = {
+        text: this.get_form.text,
+        uid: this.get_uid,
+        gif: this.get_form.gif,
+        share: this.card.status
+      }
+      console.log(data)
       if(confirm("年賀状を作成してもよろしいですか？")){
         this.loading = true
         const data = {
           text: this.get_form.text,
           uid: this.get_uid,
           gif: this.get_form.gif,
-          share: this.card.dm
+          share: this.card.status
         }
         this.axios.post(this.get_API_URL+'create',data)
         .then(response => {
@@ -103,6 +113,26 @@ export default {
         })
       }
     },
+    checkDM() {
+      return this.axios.get(this.get_api_twitter+this.get_uid+"/"+this.card.dm+"/check").then(response=>{
+        console.log(response)
+        if(response.data.relationship.source.followed_by==true){
+          this.card.status = response.data.relationship.target.id_str
+          return true
+        }else if(response.data.relationship.source.followed_by==false){
+          if(confirm("指定したユーザーはフォロワーではありませんがよろしいですか？")) {
+            this.card.status = response.data.relationship.target.id_str
+            return true
+          }else {
+            return false
+          }
+        }else {
+          alert("ユーザーが見つかりませんでした")
+        }
+      }).catch(()=>{
+        alert("ユーザーが見つかりませんでした")
+      })
+    }
   },
   computed: {
     _share: {
@@ -124,6 +154,9 @@ export default {
     },
     get_form() {
       return this.$store.getters.get_form
+    },
+    get_login() {
+      return this.$store.getters.get_isLogin
     },
     get_API_URL() {
       return this.$store.getters.get_API_URL
