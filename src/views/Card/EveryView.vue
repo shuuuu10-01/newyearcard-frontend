@@ -34,6 +34,7 @@ export default {
         this.card.share = response.data.data.share
         this.isShow = true
         if(this.get_uid == this.card.uid){
+          console.log("you!!")
           return false
         }
         console.log(this.card.share,"showwww")
@@ -51,7 +52,6 @@ export default {
       } else if (this.card.share==1){
         console.log("cU-1")
         await this.checkFriend()
-        console.log("")
       } else {
         await this.checkDM();
         
@@ -69,11 +69,13 @@ export default {
           } else {
             console.log("cF-false")
             alert("このページは限定公開に設定されています")
+            this.$router.push("/")
             throw new Error('throw Error');
           }
         }).catch(()=>{
           console.log("cF-e")
           alert("エラーが発生しました")
+          this.$router.push("/")
         })
       } else {
         alert("このページを確認するにはログインしてください")
@@ -86,6 +88,7 @@ export default {
           return true
         } else {
           alert("このページは限定公開に設定されています。")
+          this.$router.push("/")
           throw new Error('throw Error');
         }
       } else {

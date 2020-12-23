@@ -16,10 +16,6 @@
         <gif _src="/Gif/card03.gif"/>
         <label class="gif-radio"><input type="radio" name="gif-radio" class="gif-radio" value="card03" @input="setGif($event.target.value)">年賀状03</label>
       </slide>
-      <slide>
-        <gif _src="/Gif/card04.gif"/>
-        <label class="gif-radio"><input type="radio" name="gif-radio" class="gif-radio" value="card04" @input="setGif($event.target.value)">年賀状04</label>
-      </slide>
       <br>
       <hooper-pagination slot="hooper-addons"/>
       <hooper-navigation slot="hooper-addons"></hooper-navigation>

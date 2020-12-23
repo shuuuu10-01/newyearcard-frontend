@@ -15,6 +15,7 @@
           <option value="2" v-if="get_login">フォロワーを指定</option>
         </select>
       </div>
+      <p v-if="!get_login">Twitterにログインすることで公開範囲を設定できます</p>
       <div class="dm" v-show="dm">
           <input type="text" v-model="card.dm" placeholder="twitterID">
           <p>@</p>
@@ -184,8 +185,13 @@ export default {
   font-size: 4vw;
 }
 .form p {
-  margin: 0;
-  transition: 0.3s;
+  margin: auto;
+  color: black;
+  background-color: white;
+  border: 2px solid #cfcfcf;
+  border-radius: 5px;
+  font-size: 2vw;
+  width: 60%;
 }
 
 .form-input {
@@ -279,7 +285,7 @@ textarea {
 .cp_ipselect.cp_sl04 {
 	position: relative;
 	border: 2px solid #cfcfcf;
-  border-radius: 10px;
+  border-radius: 5px;
 	background: #ffffff;
 }
 .cp_ipselect.cp_sl04::before {
