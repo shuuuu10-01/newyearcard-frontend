@@ -70,6 +70,14 @@ export default {
         alert("年賀状を選択してください")
         return 0;
       }
+      if (this.get_form.text=="") {
+        alert("メッサージを記入してください")
+        return 0;
+      }
+      if (this.card.share=="") {
+        alert("公開範囲を選択してください")
+        return 0;
+      }
       if(!this.dm) { //全体公開の場合
         this.card.status = this.card.share
       } else {
