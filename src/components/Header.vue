@@ -125,6 +125,7 @@ header .menu{
   text-align: right;
 }
 header .menu span {
+  z-index: 100;
   line-height: 45px;
   width: 110px;
   margin: 5px;

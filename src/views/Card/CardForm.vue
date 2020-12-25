@@ -12,3 +12,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.card-form{
+  margin-top: 20px;
+}
+</style>

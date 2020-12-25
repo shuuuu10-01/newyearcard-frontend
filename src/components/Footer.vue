@@ -6,19 +6,24 @@
 
 <style scoped>
 .footer{
-  text-align: center;
-  position: absolute;
-  bottom: 0;
   left: 0;
   margin: 0;
-  height: 40px;
   margin-top: 20px;
-  background-color: rgba(255, 255, 255, 0.70);
-  width: 100%;
+  padding-bottom: 40px;
+  position: relative;/* ←相対位置 */
+  box-sizing: border-box;
+  /* ↑ヘッダーやフッターを含むすべての要素の高さ＝min-height:100vhになるように指定 */
+  height: 100%;
+  min-height: 80vh;
 }
 .footer p {
+  position: absolute;/* ←絶対位置 */
+  text-align: center;
+  bottom: 0;
   line-height: 40px;
   font-size: 15px;
   margin: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.70);
 }
 </style>
