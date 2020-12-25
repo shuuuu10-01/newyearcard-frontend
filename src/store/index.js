@@ -52,6 +52,9 @@ export default new Vuex.Store({
     get_user_uid(state){
       return state.user.uid
     },
+    get_user_displayName(state){
+      return state.user.displayName
+    },
     get_form(state){
       return state.form
     },

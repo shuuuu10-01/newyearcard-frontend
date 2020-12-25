@@ -28,7 +28,7 @@ export default {
 <style scoped>
 /*curcle*/
 .close {
-  top: 0;
+  top: 40px;
   right: 10px;
   z-index: 10;
 	font-size: 30px;

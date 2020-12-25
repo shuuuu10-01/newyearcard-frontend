@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="logo">
-      <p>NewMaker</p>
+      <p @click="home">NewMaker</p>
     </div>
     <div class="u-icon">
       <div class="menu" v-if="getlogin">
@@ -50,6 +50,9 @@ export default {
         })
       });
     },
+    home(){
+      this.$router.push('/')
+    }
   },
   computed: {
     geticon() {
@@ -73,12 +76,15 @@ header {
 header .logo {
   float: left;
   height: 100%;
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 header .logo  p{
   font-size: 18px;
-  margin-top: 18px;
+  line-height: 60px;
+  margin: 0;
+  cursor: pointer;
+  color: #5e5c5c;
 }
 header .u-icon{
   float: right;

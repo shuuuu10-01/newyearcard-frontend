@@ -103,7 +103,8 @@ export default {
         text: this.get_form.text,
         uid: this.get_uid,
         gif: this.get_form.gif,
-        share: this.card.status
+        share: this.card.status,
+        display_name: this.get_displayName
       }
       console.log(data)
       if(confirm("年賀状を作成してもよろしいですか？")){
@@ -112,7 +113,8 @@ export default {
           text: this.get_form.text,
           uid: this.get_uid,
           gif: this.get_form.gif,
-          share: this.card.status
+          share: this.card.status,
+          display_name: this.get_displayName
         }
         this.axios.post(this.get_API_URL+'create',data)
         .then(response => {
@@ -120,7 +122,7 @@ export default {
           if(response.data.status == "SUCCESS"){
           //作ったカードのページへ遷移
           this.updateText("");
-          this.$router.push({ path: `/card/${response.data.data.id}/show`});
+          this.$router.push({ path: `/card/${response.data.data.public_uid}/show`});
           }
         }).catch (()=>{
           alert("エラーが発生しました。")
@@ -166,6 +168,9 @@ export default {
     },
     get_uid() {
       return this.$store.getters.get_user_uid
+    },
+    get_displayName(){
+      return this.$store.getters.get_user_displayName
     },
     get_form() {
       return this.$store.getters.get_form
