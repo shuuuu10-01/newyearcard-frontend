@@ -2,7 +2,7 @@
   <div class="gif">
     <img :src="gifname" />
     <span :class="_gif">
-        <nl2br tag="div" :text="_text"/>
+      <nl2br class="nl2br" tag="div" :text="_text"/>
     </span>
   </div>
 </template>
@@ -31,23 +31,42 @@ export default {
 <style scoped>
 .gif {
   position: relative;
-  height: 100%;  
+  width: 100%;
 }
 img {
   width: 100%;
 }
 /* */
-.gif .card01 {
+.gif .card01{
   position: absolute;
-  width: 60%;
-  height: 45%;
-  top: 45%;
-  left: 10%;
-}
-.gif .card01 p {
+  width: 45%;
+  height: 35%;
+  top: 65%;
+  left: 55%;
   text-align: left;
   box-sizing: inherit;
-  width: 100%;
+  word-break: break-all;
+  font-size: 3vw;
+}
+.gif .card02{
+  position: absolute;
+  width: 45%;
+  height: 35%;
+  top: 65%;
+  left: 3%;
+  text-align: left;
+  box-sizing: inherit;
+  word-break: break-all;
+  font-size: 3vw;
+}
+.gif .card03{
+  position: absolute;
+  width: 60%;
+  height: 35%;
+  top: 65%;
+  left: 20%;
+  text-align: left;
+  box-sizing: inherit;
   word-break: break-all;
   font-size: 3vw;
 }

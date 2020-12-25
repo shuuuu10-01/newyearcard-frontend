@@ -15,26 +15,28 @@
           <option value="2" v-if="get_login">フォロワーを指定</option>
         </select>
       </div>
-      <p v-if="!get_login">Twitterにログインすることで公開範囲を設定できます</p>
-      <div class="dm" v-show="dm">
+      <p v-if="!get_login" class="form-p">Twitterにログインすることで公開範囲を設定できます</p>
+        <div class="dm" v-show="dm">
           <input type="text" v-model="card.dm" placeholder="twitterID">
-          <p>@</p>
+          <p class="dm-p">@</p>
         </div>
-      <div class="complete">
-        <input type="submit" @click="complete" value="完成！！">
+      <div class="buttons">
+        <div class="complete">
+          <input type="submit" @click="complete" value="完成！！">
+        </div>
+        <div class="preview">
+          <span class="preview-button" @click="doPreview">プレビュー</span>
+          <gif-preview ref="pre"/>
+        </div>
       </div>
     </form>
-    <div class="preview">
-      <button @click="doPreview">preview</button>
-      <Gifpre :_gif="get_form.gif" :_text="get_form.text" v-if="preview"/>
-    </div>
     <form-loading :nowloading="loading"/>
   </div>
 </template>
 
 <script>
-import Gifpre from '../Gif/CompleteGif.vue'
 import FormLoading from '../Loading/Form_Loading.vue'
+import GifPreview from './__GifPreview.vue'
 import Hooper from './__Hooper.vue'
 
 export default {
@@ -51,16 +53,20 @@ export default {
     }
   },
   components: {
-    Gifpre,
     Hooper,
     FormLoading,
+    GifPreview,
   },
   methods: {
     updateText(value) {
       this.$store.commit("setText",value)
     },
     doPreview () {
-      this.preview = !this.preview
+      if (this.get_form.gif=="") {
+        alert("年賀状を選択してください")
+        return 0;
+      }
+      this.$refs.pre.isOpen = !this.$refs.pre.isOpen
     },
     async complete () {
       if (this.get_uid!=null) {
@@ -192,9 +198,9 @@ export default {
   width: 50%;
   font-size: 4vw;
 }
-.form p {
+.form .form-p {
   margin: auto;
-  color: black;
+  color: #5e5c5c;
   background-color: white;
   border: 2px solid #cfcfcf;
   border-radius: 5px;
@@ -216,7 +222,7 @@ textarea {
   padding: 15px 10px 10px;
   font: 15px/24px sans-serif;
   background: white;
-  color: black;
+  color: #5e5c5c;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -231,25 +237,29 @@ textarea {
   min-height: 100px;
   max-height: 120px;
   border: 2px solid #cfcfcf;
-}
-.preview {
-  width: 90%;
-  margin: auto;
+  margin-bottom: 10px;
 }
 
+.buttons{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /*dm*/
 .dm {
   position: relative;
   margin: auto;
-  width: 35%;
+  width: 40%;
 }
 .dm input[type=text] {
-  font: 15px/24px sans-serif;
 	box-sizing: border-box;
+  color: #5e5c5c;
 	width: 100%;
+  height: 30px;
 	padding-left: 35px;
   border: 2px solid #cfcfcf;
-	border-radius: 17.5px;
+	border-radius: 5px;
 }
 .dm input[type='text']:focus {
   outline: none;
@@ -257,20 +267,22 @@ textarea {
 .dm input[type='text']:focus::after {
 	outline: none;
 }
-.dm p {
+.dm .dm-p {
   position: absolute;
-  top:4px;
-  left: 14px;
-	transition: 0.3s;
-  color: #000000;
-  font: 15px/24px sans-serif;
+  line-height: 30px;
+  top: 0;
+  left: 10px;
+  color: #5e5c5c;
+  margin: 0;
 }
 /* プルダウンの選択 */
 .cp_ipselect {
   overflow: hidden;
   padding-left: 10px;
 	width: 40%;
-	margin: auto auto 5px auto;
+	margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
 	text-align: center;
 }
 .cp_ipselect select {
@@ -288,7 +300,7 @@ textarea {
 	appearance: none;
 }
 .cp_ipselect select::-ms-expand {
-    display: none;
+  display: none;
 }
 .cp_ipselect.cp_sl04 {
 	position: relative;
@@ -310,7 +322,43 @@ textarea {
 	pointer-events: none;
 }
 .cp_ipselect.cp_sl04 select {
-	padding: 8px 38px 8px 8px;
-	color:#575656;
+  height: 30px;
+	color: #5e5c5c;
+}
+
+span.preview-button {
+  margin: 10px;
+  margin-left: 20px;
+  line-height: 26px;
+  width: 100px;
+  height: 26px;
+  font-size: 12px;
+  cursor: pointer;
+	display: block;
+	color:   #5e5c5c;
+	background:#FFF;
+	border-radius: 5px;
+  border: 2px solid #cfcfcf;
+	box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+}
+span.preview-button:active {
+	border-bottom: 2px solid #cfcfcf;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+}
+.complete input{
+  background:#FFF;
+  color: #5e5c5c;
+	box-sizing: border-box;
+	width: 100px;
+  height: 30px;
+  margin: 10px;
+  margin-right: 20px;
+  border: 2px solid #cfcfcf;
+	border-radius: 5px;
+  cursor: pointer;
+}
+.complete input:active {
+	border-bottom: 2px solid #cfcfcf;
+	box-shadow: 0 0 2px rgba(43, 42, 42, 0.3);
 }
 </style>
