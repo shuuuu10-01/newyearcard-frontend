@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home/Home.vue'
 import About from '../views/Home/About.vue'
-import CardView from '../views/CardView.vue'
 import Router from '../views/Card/EveryView.vue'
 import CardForm from '../views/Card/CardForm.vue'
 
@@ -16,10 +15,6 @@ const routes = [
   {
     path: '/about',
     component: About
-  },
-  {
-    path: '/card/view',
-    component: CardView
   },
   {
     path: '/card/new',
