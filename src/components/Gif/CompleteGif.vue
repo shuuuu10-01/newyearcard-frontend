@@ -1,13 +1,14 @@
 <template>
   <div class="gif">
     <img :src="gifname" />
-    <span :class="_gif" >
-        <p>{{_text}}</p>
+    <span :class="_gif">
+        <nl2br tag="div" :text="_text"/>
     </span>
   </div>
 </template>
 
 <script>
+import Nl2br from 'vue-nl2br'
 export default {
   data() {
     return {
@@ -17,6 +18,9 @@ export default {
   props: {
     _gif: String,
     _text: String,
+  },
+  components:{
+    Nl2br
   },
   mounted(){
     this.gifname = "/Gif/"+this._gif+".gif"
