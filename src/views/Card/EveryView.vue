@@ -3,7 +3,7 @@
     <div class="card" v-if="isShow">
       <Gif :_gif="card.gif" :_text="card.text"/>
     </div>
-    <div class="address" v-if="get_login">
+    <div class="address">
       <p class="title">電子はがき</p>
       <img src="../../assets/logo.png">
       <div class="guest">
@@ -11,6 +11,8 @@
         <br>
         <h1 class="ml2">
           <span class='letter' v-for="word in get_displayname" :key="word.num">{{word}}</span>
+          <span class='letter'> </span>
+          <span class='letter'>様</span>
         </h1>
       </div>
       <div class="user">
@@ -187,6 +189,11 @@ export default {
     },
     get_displayname() {
       let user =  this.$store.getters.get_user_displayName.split('');
+      console.log("ads",user)
+      if(user.length==0){
+        let sample = "あなた"
+        user=sample.split('');
+      }
       return user
     },
     get_login(){
