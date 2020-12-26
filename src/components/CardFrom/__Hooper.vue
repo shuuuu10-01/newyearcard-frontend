@@ -5,15 +5,15 @@
       :settings="hooperSettings"
       >
       <slide>
-        <gif _src="/Gif/card01.gif"/>
+        <video src="/Video/card01.mp4" loop autoplay muted/>
         <label class="gif-radio"><input type="radio" name="gif-radio" class="gif-radio" value="card01" @input="setGif($event.target.value)">年賀状01</label>
       </slide>
       <slide>
-        <gif _src="/Gif/card02.gif"/>
+        <video src="/Video/card02.mp4" loop autoplay muted/>
         <label class="gif-radio"><input type="radio" name="gif-radio" class="gif-radio" value="card02" @input="setGif($event.target.value)">年賀状02</label>
       </slide>
       <slide>
-        <gif _src="/Gif/card03.gif"/>
+        <video src="/Video/card03.mp4" loop autoplay muted/>
         <label class="gif-radio"><input type="radio" name="gif-radio" class="gif-radio" value="card03" @input="setGif($event.target.value)">年賀状03</label>
       </slide>
       <br>
@@ -31,7 +31,6 @@ import {
   Navigation as HooperNavigation 
 } from 'hooper';
 import 'hooper/dist/hooper.css';
-import Gif from './__Gif.vue'
 
 export default {
   data() {
@@ -50,7 +49,6 @@ export default {
     Slide,
     HooperPagination,
     HooperNavigation,
-    Gif
   },
   methods: {
     setGif(value) {
@@ -79,5 +77,8 @@ export default {
 }
 .hooper-navigation{
   margin-top: 30px;
+}
+video{
+  width: 100%;
 }
 </style>
