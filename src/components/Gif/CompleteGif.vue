@@ -1,6 +1,6 @@
 <template>
   <div class="gif">
-    <img :src="gifname" />
+    <video :src="gifname" loop autoplay muted/>
     <span :class="_gif">
       <nl2br class="nl2br" tag="div" :text="_text"/>
     </span>
@@ -23,7 +23,7 @@ export default {
     Nl2br
   },
   mounted(){
-    this.gifname = "/Gif/"+this._gif+".gif"
+    this.gifname = "/Video/"+this._gif+".mp4"
   }
 }
 </script>
@@ -34,7 +34,7 @@ export default {
   position: relative;
   width: 100%;
 }
-img {
+video {
   width: 100%;
 }
 /* */
