@@ -3,11 +3,11 @@
     <div class="card" v-if="isShow">
       <Gif :_gif="card.gif" :_text="card.text"/>
     </div>
-    <div class="address">
+    <div class="address" v-if="isShow">
       <p class="title">電子はがき</p>
-      <img src="../../assets/logo.png">
+      <img src="../../assets/kitte.png">
       <div class="guest">
-        <p>Twitterの主</p>
+        <p>新年のあいさつ</p>
         <br>
         <h1 class="ml2">
           <span class='letter' v-for="word in get_displayname" :key="word.num">{{word}}</span>
