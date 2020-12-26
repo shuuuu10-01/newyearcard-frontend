@@ -20,6 +20,11 @@
         </h1>
       </div>
     </div>
+    <div class="twitter">
+      <a href="//twitter.com/share" class="twitter-share-button" data-text="年賀状をWebアプリで作ってみた" :data-url="'https://newyeaercard.netlify.app/#'+$route.path" data-lang="ja">
+        Tweet
+      </a>
+    </div>
   </div>
 </template>
 
@@ -37,7 +42,8 @@ export default {
         share: "",
         displayname:""
       },
-      isShow: false
+      isShow: false,
+      isShare: false
     }
   },
   components: {
@@ -162,6 +168,9 @@ export default {
     if (self) {
       await this.checkUser();
       console.log("check")
+    }else {
+      this.isShare = true
+      console.log(this.isShare)
     }
     this.guestAnime()
     this.userAnime()
@@ -252,5 +261,8 @@ export default {
   font-weight: 800;
   font-size: 3vw;
   margin: 0;
+}
+.twitter{
+  margin-top: 100px;
 }
 </style>

@@ -38,6 +38,9 @@ export default new Vuex.Store({
     setText(state,value) {
       state.form.text = value
     },
+    setName(state,value) {
+      state.user.displayName = value
+    },
     logoutUser(state) { //ログアウトの処理
       state.user.displayName="";
       state.user.photoURL="";

@@ -4,6 +4,9 @@
     <h1>年賀状の作成</h1>
     <form class="form" @submit.prevent>
       <hooper/>
+      <div class="nologin" v-show="!get_login">
+          <input type="text" :value="get_displayName" placeholder="ユーザー名" @input="updateName($event.target.value)">
+        </div>
       <div class="form-input">
         <textarea type="text" name="message" placeholder="Message" :value="get_form.text" @input="updateText($event.target.value)" required></textarea>
       </div>
@@ -20,6 +23,7 @@
           <input type="text" v-model="card.dm" placeholder="twitterID">
           <p class="dm-p">@</p>
         </div>
+        
       <div class="buttons">
         <div class="complete">
           <input type="submit" @click="complete" value="完成！！">
@@ -60,6 +64,9 @@ export default {
   methods: {
     updateText(value) {
       this.$store.commit("setText",value)
+    },
+    updateName(value) {
+      this.$store.commit("setName",value)
     },
     doPreview () {
       if (this.get_form.gif=="") {
@@ -209,8 +216,9 @@ export default {
   background-color: white;
   border: 2px solid #cfcfcf;
   border-radius: 5px;
-  font-size: 2vw;
-  width: 60%;
+  font-size: 12px;
+  width: 70%;
+  max-width: 400px;
 }
 
 .form-input {
@@ -255,7 +263,7 @@ textarea {
 .dm {
   position: relative;
   margin: auto;
-  width: 40%;
+	width: 64%;
 }
 .dm input[type=text] {
 	box-sizing: border-box;
@@ -270,7 +278,7 @@ textarea {
   outline: none;
 }
 .dm input[type='text']:focus::after {
-	outline: none;
+	outline: black
 }
 .dm .dm-p {
   position: absolute;
@@ -284,10 +292,10 @@ textarea {
 .cp_ipselect {
   overflow: hidden;
   padding-left: 10px;
-	width: 40%;
+  width:62%;
 	margin-left: auto;
   margin-right: auto;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 	text-align: center;
 }
 .cp_ipselect select {
@@ -365,5 +373,23 @@ span.preview-button:active {
 .complete input:active {
 	border-bottom: 2px solid #cfcfcf;
 	box-shadow: 0 0 2px rgba(43, 42, 42, 0.3);
+}
+
+.nologin input[type=text] {
+  padding-left: 10px;
+	box-sizing: border-box;
+  color: #5e5c5c;
+	width:64%;
+  height: 30px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 2px solid #cfcfcf;
+	border-radius: 5px;
+}
+.nologin input[type='text']:focus {
+  outline: none;
+}
+.nologin input[type='text']:focus::after {
+	outline: black
 }
 </style>

@@ -30,6 +30,7 @@ export default {
 
 <style scoped>
 .gif {
+  font-weight: 700;
   position: relative;
   width: 100%;
 }
