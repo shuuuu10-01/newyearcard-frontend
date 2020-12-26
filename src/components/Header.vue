@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="logo">
-      <p @click="home">NewMaker</p>
+      <p @click="home">NewYearMaker</p>
     </div>
     <div class="u-icon">
       <div class="menu" v-if="getlogin">

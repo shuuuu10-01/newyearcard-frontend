@@ -11,7 +11,6 @@
         <br>
         <h1 class="ml2">
           <span class='letter' v-for="word in get_displayname" :key="word.num">{{word}}</span>
-          <span class='letter'> </span>
           <span class='letter'>様</span>
         </h1>
       </div>

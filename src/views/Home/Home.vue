@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../../assets/logo.png">
+    <img alt="Vue logo" src="../../assets/title.png">
     <div class="create">
       <span class="create-button" @click="push_new">年賀状を作成する</span>
     </div>
@@ -35,5 +35,10 @@ export default {
 .create-button:active {
 	border-bottom: 2px solid #5e5c5c;
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+}
+img{
+  width: 60%;
+  margin-top: 10%;
+  margin-bottom: 30%;
 }
 </style>
