@@ -26,12 +26,14 @@
         Tweet
       </a>
     </div>
+    <login-mordal v-if="isOpen"/>
   </div>
 </template>
 
 <script>
 import Gif from '../../components/Gif/CompleteGif.vue'
 import anime from 'animejs'
+import LoginMordal from '../../components/CardView/_LoginMordal.vue'
 export default {
   data () {
     return {
@@ -44,11 +46,12 @@ export default {
         displayname:""
       },
       isShow: false,
-      isShare: false
+      isOpen: false
     }
   },
   components: {
-    Gif
+    Gif,
+    LoginMordal
   },
   methods: {
     showApi () {
@@ -59,10 +62,10 @@ export default {
         this.card.uid = response.data.data.uid
         this.card.share = response.data.data.share
         this.card.displayname = response.data.data.display_name
-        this.isShow = true
         this.words = response.data.data.display_name.split('');
         if(this.get_uid == this.card.uid){
           console.log("you!!")
+          this.isShow = true
           return false
         }
         console.log(this.card.share,"showwww")
@@ -76,6 +79,7 @@ export default {
     async checkUser() {
       if (this.card.share==0) {
         console.log("cU-0-ok")
+        this.isShow = true
         return true
       } else if (this.card.share==1){
         console.log("cU-1")
@@ -93,6 +97,7 @@ export default {
           console.log(response)
           if (response.data.relationship.source.followed_by){
             console.log("cF-true")
+            this.isShow = true
             return true
           } else {
             console.log("cF-false")
@@ -107,12 +112,14 @@ export default {
         })
       } else {
         alert("このページを確認するにはログインしてください")
+        this.isOpen=true
         throw new Error('throw Error');
       }
     },
     async checkDM() {
       if(this.get_uid !="") {
         if(this.card.share == this.get_uid) {
+          this.isShow = true
           return true
         } else {
           alert("このページは限定公開に設定されています。")
@@ -121,6 +128,7 @@ export default {
         }
       } else {
         alert("このページを確認するにはログインしてください。")
+        this.isOpen=true
         throw new Error('throw Error');
       }
     },
@@ -169,9 +177,6 @@ export default {
     if (self) {
       await this.checkUser();
       console.log("check")
-    }else {
-      this.isShare = true
-      console.log(this.isShare)
     }
     this.guestAnime()
     this.userAnime()

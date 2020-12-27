@@ -13,34 +13,22 @@
           </li>
         </ul>
       </div>
-      <span class="login-button" @click="login" v-if="!getlogin"><i class="fa fa-twitter"></i> ログイン</span>
+      <login-button text="ログイン"/>
     </div>
   </header>
 </template>
 
 <script>
 import firebase from 'firebase/app'
+import LoginButton from './Button/LoginButton.vue'
 export default {
+  components: { LoginButton },
   data() {
     return {
       menu: false
     }
   },
   methods: {
-    login() {
-      const provider = new firebase.auth.TwitterAuthProvider()
-      firebase.auth().signInWithPopup(provider)
-        .then(
-          result => {
-            console.log("signin",result.user)
-            if (result.user) {
-              this.$store.dispatch("setUser",result.user)
-            } else {
-              alert("エラーが発生しました。")
-            }
-          }
-        )
-    },
     signout () {
       firebase.auth().onAuthStateChanged( (user) => {
         firebase.auth().signOut().then(()=>{
