@@ -35,7 +35,7 @@
 import Gif from '../../components/Gif/CompleteGif.vue'
 import anime from 'animejs'
 import LoginMordal from '../../components/CardView/_LoginMordal.vue'
-import ViewLoading from '../../components/Loading/View_Loading.vue'
+import ViewLoading from '../../components/Loading/ViewLoading.vue'
 export default {
   data () {
     return {

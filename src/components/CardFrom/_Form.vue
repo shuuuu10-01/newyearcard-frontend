@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import FormLoading from '../Loading/Form_Loading.vue'
+import FormLoading from '../Loading/FormLoading.vue'
 import GifPreview from './__GifPreview.vue'
 import Hooper from './__Hooper.vue'
 
