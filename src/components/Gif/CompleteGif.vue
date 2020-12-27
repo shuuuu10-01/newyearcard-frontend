@@ -42,23 +42,25 @@ video {
   position: absolute;
   width: 45%;
   height: 35%;
-  top: 65%;
+  top: 60%;
   left: 55%;
   text-align: left;
   box-sizing: inherit;
   word-break: break-all;
   font-size: 3vw;
+  overflow: hidden;
 }
 .gif .card02{
   position: absolute;
-  width: 45%;
+  width: 60%;
   height: 35%;
-  top: 65%;
+  top: 60%;
   left: 3%;
   text-align: left;
   box-sizing: inherit;
   word-break: break-all;
   font-size: 3vw;
+  overflow: hidden;
 }
 .gif .card03{
   position: absolute;
@@ -70,5 +72,6 @@ video {
   box-sizing: inherit;
   word-break: break-all;
   font-size: 3vw;
+  overflow: hidden;
 }
 </style>

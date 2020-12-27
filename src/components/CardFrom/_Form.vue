@@ -5,7 +5,7 @@
     <form class="form" @submit.prevent>
       <hooper/>
       <div class="nologin" v-show="!get_login">
-          <input type="text" :value="get_displayName" placeholder="ユーザー名" @input="updateName($event.target.value)">
+          <input type="text" :value="get_displayName" placeholder="ユーザー名(10文字まで)" maxlength='10' @input="updateName($event.target.value)">
         </div>
       <div class="form-input">
         <textarea type="text" name="message" placeholder="Message" :value="get_form.text" @input="updateText($event.target.value)" required></textarea>
@@ -20,7 +20,7 @@
       </div>
       <p v-if="!get_login" class="form-p">Twitterにログインすることで公開範囲を設定できます</p>
         <div class="dm" v-show="dm">
-          <input type="text" v-model="card.dm" placeholder="twitterID">
+          <input type="text" v-model="card.dm" placeholder="半角英数で入力してください" pattern="^[0-9A-Za-z]+$">
           <p class="dm-p">@</p>
         </div>
         
