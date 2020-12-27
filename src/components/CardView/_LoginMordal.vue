@@ -16,19 +16,19 @@ export default {
 
 <style scoped>
 .modal{
-  z-index: 1;
+  z-index: 199;
   position: fixed;
   display: flex;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color:  rgb(82, 80, 79);
   align-items: center;
   justify-content: center;
 }
 .modal .contents{
-  z-index: 2;
+  z-index: 200;
   width: 50%;
   padding-top: 5em;
   padding-bottom: 5em;

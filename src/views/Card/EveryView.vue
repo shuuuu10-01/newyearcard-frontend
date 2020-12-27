@@ -27,6 +27,7 @@
       </a>
     </div>
     <login-mordal v-if="isOpen"/>
+    <view-loading :nowloading="!isShow"/>
   </div>
 </template>
 
@@ -34,6 +35,7 @@
 import Gif from '../../components/Gif/CompleteGif.vue'
 import anime from 'animejs'
 import LoginMordal from '../../components/CardView/_LoginMordal.vue'
+import ViewLoading from '../../components/Loading/View_Loading.vue'
 export default {
   data () {
     return {
@@ -51,7 +53,8 @@ export default {
   },
   components: {
     Gif,
-    LoginMordal
+    LoginMordal,
+    ViewLoading
   },
   methods: {
     showApi () {
