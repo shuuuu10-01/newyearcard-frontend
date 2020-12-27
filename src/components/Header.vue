@@ -9,7 +9,7 @@
         <br>
         <ul>
           <li>
-            <span @click="signout" v-if="menu"><i class="fa fa-twitter"></i> ログアウト</span>
+            <span @click="signout" v-if="menu"><i class="fab fa-twitter"></i> ログアウト</span>
           </li>
         </ul>
       </div>

@@ -21,10 +21,9 @@
         </h1>
       </div>
     </div>
-    <div class="twitter">
-      <a href="//twitter.com/share" class="twitter-share-button" data-text="年賀状をWebアプリで作ってみた" :data-url="'https://newyeaercard.netlify.app/#'+$route.path" data-lang="ja">
-        Tweet
-      </a>
+    <div class="buttons">
+      <tweet-button class="tweet"/>
+      <link-copy class="copy"/>
     </div>
     <login-mordal v-if="isOpen"/>
     <view-loading :nowloading="!isShow"/>
@@ -36,6 +35,8 @@ import Gif from '../../components/Gif/CompleteGif.vue'
 import anime from 'animejs'
 import LoginMordal from '../../components/CardView/_LoginMordal.vue'
 import ViewLoading from '../../components/Loading/ViewLoading.vue'
+import TweetButton from '../../components/Button/TweetButton.vue'
+import LinkCopy from '../../components/Button/LinkCopy.vue'
 export default {
   data () {
     return {
@@ -54,7 +55,9 @@ export default {
   components: {
     Gif,
     LoginMordal,
-    ViewLoading
+    ViewLoading,
+    TweetButton,
+    LinkCopy
   },
   methods: {
     showApi () {
@@ -276,7 +279,16 @@ export default {
   font-size: 3vw;
   margin: 0;
 }
-.twitter{
+.buttons {
   margin-top: 100px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.buttons .tweet{
+  margin-right: 15px;
+}
+.buttons .copy{
+  margin-left: 15px;
 }
 </style>

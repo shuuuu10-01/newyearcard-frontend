@@ -1,5 +1,5 @@
 <template>
-  <span class="login-button" @click="login" v-if="!getlogin"><i class="fa fa-twitter"></i> {{text}}</span>
+  <span class="login-button" @click="login" v-if="!getlogin"><i class="fab fa-twitter"></i> {{text}}</span>
 </template>
 
 <script>

@@ -7,6 +7,7 @@ import VueAxios from 'vue-axios' //追記
 import VueFreezeframe from "vue-freezeframe"
 import './plugins/firebase.js'
 import firebase from 'firebase'
+import VueClipboard from 'vue-clipboard2'//クリップボードにURLをコピーするために追加
 
 
 Vue.config.productionTip = false
@@ -17,6 +18,8 @@ require("dotenv").config({ path: __dirname + "../../../.env" });
 Vue.use(VueAxios, axios) //追記
 
 Vue.use(VueFreezeframe);
+
+Vue.use(VueClipboard)
 
 const app = () => {
   firebase.auth().onAuthStateChanged((currentUser) => {
