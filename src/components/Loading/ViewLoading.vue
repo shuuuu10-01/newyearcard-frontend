@@ -6,13 +6,26 @@
       <div class="sk-cube4 sk-cube"></div>
       <div class="sk-cube3 sk-cube"></div>
     </div>
+    <happy-new-year v-if="isOpen"/>
   </div>
 </template>
 
 <script>
+import HappyNewYear from './_HappyNewYear.vue'
 export default {
+  data() {
+    return {
+      isOpen: false
+    }
+  },
+  components: { HappyNewYear },
   props: {
     nowloading:Boolean
+  },
+  watch: {
+    isOpen: function(){
+
+    }
   }
 }
 </script>

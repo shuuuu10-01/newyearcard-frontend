@@ -1,5 +1,5 @@
 <template>
-  <div class="welcome" @click="doAnime">
+  <div class="welcome" v-show="start">
       <h1 class="ml2">
         <span class="letter colorRed">H</span>
         <span class="letter colorRed">a</span>
@@ -19,9 +19,9 @@
         <span class="letter">1</span>  -->
       </h1>
       <h1 class="ml4">
-        <span class="letters letters-1">Let's</span>
-        <span class="letters letters-2">Go</span>
-        <span class="letters letters-3">2021!</span>
+        <span class="letters letters-1">3</span>
+        <span class="letters letters-2">2</span>
+        <span class="letters letters-3">1</span>
       </h1>
     </div>
 </template>
@@ -35,25 +35,17 @@ ml4.scaleOut = 3;
 ml4.durationIn = 800;
 ml4.durationOut = 600;
 ml4.delay = 500;
+
 export default {
+  data() {
+    return {
+      start: true
+    }
+  },
   methods: {
-    async welcomeAnime(){
-      anime.timeline({loop: false})
+    welcomeAnime(){
+      let animation = anime.timeline()
       .add({
-        targets: '.ml2 .letter',
-        scale: [4,1],
-        opacity: [0,1],
-        translateZ: 0,
-        easing: "easeOutExpo",
-        duration: 950,
-        delay: (el, i) => 70*i
-      }).add({
-        targets: '.ml2',
-        opacity: 0,
-        duration: 1000,
-        easing: "easeOutExpo",
-        delay: 1000
-      }).add({
         targets: '.ml4 .letters-1',
         opacity: ml4.opacityIn,
         scale: ml4.scaleIn,
@@ -94,11 +86,31 @@ export default {
         opacity: 0,
         duration: 500,
         delay: 500
+      }).add({
+        targets: '.ml2 .letter',
+        scale: [4,1],
+        opacity: [0,1],
+        translateZ: 0,
+        easing: "easeOutExpo",
+        duration: 950,
+        delay: (el, i) => 70*i
+      }).add({
+        targets: '.ml2',
+        opacity: 0,
+        duration: 1000,
+        easing: "easeOutExpo",
+        delay: 1000
+      })
+      animation.finished.then(()=>{
+        this.start= false
       })
     },
-    doAnime() {
+    async doAnime() {
       this.welcomeAnime()
     }
+  },
+  mounted(){
+    this.doAnime()
   }
 }
 </script>
@@ -111,10 +123,11 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(226, 219, 219);
+  background-color: white;
   /* display: flex; */
   align-items: center;
   justify-content: center;
+  display: flex;
 }
 .ml2 {
   z-index: 3;
@@ -141,9 +154,10 @@ export default {
   position: absolute;
   margin: auto;
   text-align: center;
-  opacity: 0; 
+  opacity: 0;
+  font-size: 20vw;
 }
 .colorRed{
-  color: rgba(214, 75, 11,0.85);
+  color: rgba(218, 35, 22, 0.85);
 }
 </style>

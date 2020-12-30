@@ -7,17 +7,16 @@
       <p class="title">電子はがき</p>
       <img src="../../assets/kitte.png">
       <div class="guest">
-        <p>新年のあいさつ</p>
+        <p>謹賀新年</p>
         <br>
-        <h1 class="ml2">
-          <span class='letter' v-for="word in get_displayname" :key="word.num">{{word}}</span>
-          <span class='letter'>様</span>
+        <h1>
+          {{get_displayname}} 様
         </h1>
       </div>
       <div class="user">
-        <p>親愛なるあなたの友人</p>
+        <p>今年もよろしくお願いします</p>
         <h1 class="ml3">
-          <span class='letter' v-for="word in words" :key="word.num">{{word}}</span>
+          <span class='letter'>{{card.displayname}}</span>
         </h1>
       </div>
     </div>
@@ -26,17 +25,18 @@
       <link-copy class="copy"/>
     </div>
     <login-mordal v-if="isOpen"/>
+    <happy-new-year v-if="isShow"/>
     <view-loading :nowloading="!isShow"/>
   </div>
 </template>
 
 <script>
 import Gif from '../../components/Gif/CompleteGif.vue'
-import anime from 'animejs'
 import LoginMordal from '../../components/CardView/_LoginMordal.vue'
 import ViewLoading from '../../components/Loading/ViewLoading.vue'
 import TweetButton from '../../components/Button/TweetButton.vue'
 import LinkCopy from '../../components/Button/LinkCopy.vue'
+import HappyNewYear from '../../components/Loading/_HappyNewYear.vue'
 export default {
   data () {
     return {
@@ -49,7 +49,8 @@ export default {
         displayname:""
       },
       isShow: false,
-      isOpen: false
+      isOpen: false,
+      username: "あなた"
     }
   },
   components: {
@@ -57,7 +58,8 @@ export default {
     LoginMordal,
     ViewLoading,
     TweetButton,
-    LinkCopy
+    LinkCopy,
+    HappyNewYear
   },
   methods: {
     showApi () {
@@ -68,7 +70,6 @@ export default {
         this.card.uid = response.data.data.uid
         this.card.share = response.data.data.share
         this.card.displayname = response.data.data.display_name
-        this.words = response.data.data.display_name.split('');
         if(this.get_uid == this.card.uid){
           console.log("you!!")
           this.isShow = true
@@ -138,42 +139,6 @@ export default {
         throw new Error('throw Error');
       }
     },
-    guestAnime() {
-      anime.timeline({loop: true})
-      .add({
-        targets: '.ml2 .letter',
-        scale: [4,1],
-        opacity: [0,1],
-        translateZ: 0,
-        easing: "easeOutExpo",
-        duration: 950,
-        delay: (el, i) => 70*i
-      }).add({
-        targets: '.ml2',
-        opacity: 0,
-        duration: 1000,
-        easing: "easeOutExpo",
-        delay: 5000
-      });
-    },
-    userAnime() {
-      anime.timeline({loop: true})
-      .add({
-        targets: '.ml3 .letter',
-        scale: [4,1],
-        opacity: [0,1],
-        translateZ: 0,
-        easing: "easeOutExpo",
-        duration: 950,
-        delay: (el, i) => 70*i
-      }).add({
-        targets: '.ml2',
-        opacity: 0,
-        duration: 1000,
-        easing: "easeOutExpo",
-        delay: 5000
-      });
-    }
   },
   mounted: async function() {
     await this.$store.dispatch("auth");
@@ -184,8 +149,6 @@ export default {
       await this.checkUser();
       console.log("check")
     }
-    this.guestAnime()
-    this.userAnime()
   },
   computed: {
     get_api_rails() {
@@ -198,17 +161,14 @@ export default {
       return this.$store.getters.get_user_uid
     },
     get_displayname() {
-      let user =  this.$store.getters.get_user_displayName.split('');
-      console.log("ads",user)
-      if(user.length==0){
-        let sample = "あなた"
-        user=sample.split('');
+      if(this.$store.getters.get_user_displayName==""){
+        return this.username
       }
-      return user
+      return this.$store.getters.get_user_displayName
     },
     get_login(){
       return this.$store.getters.get_isLogin
-    }
+    },
   }
 }
 </script>
