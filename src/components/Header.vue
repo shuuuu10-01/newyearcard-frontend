@@ -113,7 +113,7 @@ header .menu{
   text-align: right;
 }
 header .menu span {
-  z-index: 100;
+  z-index: 200;
   line-height: 45px;
   width: 110px;
   margin: 5px;
