@@ -8,7 +8,7 @@
 export default {
   methods: {
     copy(){
-      this.$copyText("https://newyeaercard.netlify.app/#"+this.$route.path)
+      this.$copyText("https://newyearmaker.netlify.app/#"+this.$route.path)
       .then(function(e){
         alert('コピーしました')
         console.log(e)
