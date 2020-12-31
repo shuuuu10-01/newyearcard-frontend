@@ -9,7 +9,7 @@ export default {
   computed:{
     set_url() {
       const href="https://twitter.com/intent/tweet?text="
-      const path= "https://newyearmaker.netlify.app/"+this.$route.path
+      const path= "https://newyearmaker.netlify.app"+this.$route.path
       const Path =  encodeURI(path)
       const text ="年賀状をWebアプリで作ってみた"
       const Text = encodeURI(text)
