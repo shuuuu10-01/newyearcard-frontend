@@ -111,7 +111,8 @@ export default {
         uid: this.get_uid,
         gif: this.get_form.gif,
         share: this.card.status,
-        display_name: this.get_displayName
+        display_name: this.get_displayName,
+        DM_id: this.card.dm
       }
       console.log(data)
       if(confirm("年賀状を作成してもよろしいですか？")){
@@ -121,7 +122,8 @@ export default {
           uid: this.get_uid,
           gif: this.get_form.gif,
           share: this.card.status,
-          display_name: this.get_displayName
+          display_name: this.get_displayName,
+          DM_id: this.card.dm
         }
         this.axios.post(this.get_API_URL+'create',data)
         .then(response => {

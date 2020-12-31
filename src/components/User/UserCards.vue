@@ -27,7 +27,7 @@ export default {
           }else if(response.data.data[i].share==1){
             share = "フォロワー限定"
           }else{
-            share = response.data.data[i].display_name+"さんへ"
+            share = "@"+response.data.data[i].DM_id+"さんへ"
           }
           let data = { 
             share: share,

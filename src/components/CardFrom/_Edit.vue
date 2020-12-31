@@ -117,7 +117,8 @@ export default {
           uid: this.get_uid,
           gif: this.get_form.gif,
           share: this.card.status,
-          display_name: this.get_displayName
+          display_name: this.get_displayName,
+          DM_id: this.card.dm
         }
         this.axios.post(this.get_API_URL+this.$route.params.id+'/update',data)
         .then(response => {
@@ -156,12 +157,14 @@ export default {
     showApi () {
       return this.axios.get(this.get_api_rails+this.$route.params.id+'/show', this.title)
       .then((response) => {
+        console.log(response)
         this.updateText(response.data.data.text)
         this.$store.dispatch("setGif",response.data.data.gif)
         if(response.data.data.share==0||response.data.data.share==1){
           this.card.share = response.data.data.share
         }else {
           this.dm =true
+          this.card.dm = response.data.data.DM_id
         }
         return true
       }).catch(()=>{ //error処理
