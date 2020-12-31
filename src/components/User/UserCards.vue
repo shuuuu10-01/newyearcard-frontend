@@ -69,12 +69,14 @@ export default {
 }
 .card{
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-wrap :wrap;
 }
 span {
   line-height: 30px;
-  width: 300px;
-  margin: auto;
+  width: 250px;
+  margin: 5px;
   margin-top: 10px;
   cursor: pointer;
 	display: block;
