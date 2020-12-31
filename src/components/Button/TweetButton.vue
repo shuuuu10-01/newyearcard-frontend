@@ -1,8 +1,24 @@
 <template>
   <div>
-    <a class="tweet-button twitter-share-button" href="https://twitter.com/intent/tweet" data-text="年賀状をWebアプリで作ってみた" :data-url="'https://newyearmaker.netlify.app/#'+$route.path" data-lang="ja"><i class="fab fa-twitter"></i> ツイート</a>
+    <a :href="set_url"><i class="fab fa-twitter"></i> ツイート</a>
   </div>
 </template>
+
+<script>
+export default {
+  computed:{
+    set_url() {
+      const href="https://twitter.com/intent/tweet?text="
+      const path= "https://newyearmaker.netlify.app/"+this.$route.path
+      const Path =  encodeURI(path)
+      const text ="年賀状をWebアプリで作ってみた"
+      const Text = encodeURI(text)
+      console.log(Path)
+      return href +Text+"%0a"+Path
+    }
+  }
+}
+</script>
 
 <style scoped>
 a {
