@@ -137,6 +137,7 @@ export default {
 .ml2 .letter {
   display: inline-block;
   line-height: 1em;
+  font-size: 10vw;
 }
 .ml4 {
   position: absolute;
