@@ -1,6 +1,6 @@
 <template>
   <div class="gif">
-    <video :src="gifname" loop autoplay muted/>
+    <video :src="gifname" loop autoplay muted playsinline/>
     <span :class="_gif">
       <nl2br class="nl2br" tag="div" :text="_text"/>
     </span>

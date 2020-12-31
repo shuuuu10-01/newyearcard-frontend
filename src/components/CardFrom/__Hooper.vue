@@ -5,15 +5,15 @@
       :settings="hooperSettings"
       >
       <slide>
-        <video src="/Video/card01.mp4" loop autoplay muted/>
+        <video src="/Video/card01.mp4" loop autoplay muted playsinline/>
         <label class="gif-radio"><input type="radio" name="gif-radio" class="gif-radio" value="card01" @input="setGif($event.target.value)">年賀状01</label>
       </slide>
       <slide>
-        <video src="/Video/card02.mp4" loop autoplay muted/>
+        <video src="/Video/card02.mp4" loop autoplay muted playsinline/>
         <label class="gif-radio"><input type="radio" name="gif-radio" class="gif-radio" value="card02" @input="setGif($event.target.value)">年賀状02</label>
       </slide>
       <slide>
-        <video src="/Video/card03.mp4" loop autoplay muted/>
+        <video src="/Video/card03.mp4" loop autoplay muted playsinline/>
         <label class="gif-radio"><input type="radio" name="gif-radio" class="gif-radio" value="card03" @input="setGif($event.target.value)">年賀状03</label>
       </slide>
       <br>
