@@ -27,7 +27,7 @@
     <login-mordal v-if="isOpen"/>
     <happy-new-year v-if="isShow"/>
     <view-loading :nowloading="!isShow"/>
-    <recieve-button :display_name="card.displayname"/>
+    <recieve-button :display_name="card.displayname" :onRecieve="onRecieve"/>
   </div>
 </template>
 
@@ -52,6 +52,7 @@ export default {
       },
       isShow: false,
       isOpen: false,
+      onRecieve: false,
       username: "あなた"
     }
   },
@@ -90,6 +91,7 @@ export default {
       if (this.card.share==0) {
         console.log("cU-0-ok")
         this.isShow = true
+        this.onRecieve = true
         return true
       } else if (this.card.share==1){
         console.log("cU-1")
@@ -108,6 +110,7 @@ export default {
           if (response.data.relationship.source.followed_by){
             console.log("cF-true")
             this.isShow = true
+            this.onRecieve = true
             return true
           } else {
             console.log("cF-false")
@@ -130,6 +133,7 @@ export default {
       if(this.get_uid !="") {
         if(this.card.share == this.get_uid) {
           this.isShow = true
+          this.onRecieve = true
           return true
         } else {
           alert("このページは限定公開に設定されています。")

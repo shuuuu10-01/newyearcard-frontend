@@ -1,5 +1,5 @@
 <template>
-  <div class="icon icon--plus" v-show="get_login">
+  <div class="icon icon--plus" v-show="onRecieve">
     <span class="icon__mark" @click="recieve"><i class="fas fa-plus"></i></span>
   </div>
 </template>
@@ -17,6 +17,8 @@ export default {
         console.log(data)
         this.axios.post(this.get_recieve+'add',data).then((response)=>{
           console.log(response)
+        }).catch(()=>{
+          alert("すでに受け取っています")
         })
       }
     }
@@ -33,7 +35,8 @@ export default {
     }
   },
   props:{
-    display_name:String
+    display_name:String,
+    onRecieve: Boolean
   }
 }
 </script>
