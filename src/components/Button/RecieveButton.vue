@@ -1,5 +1,5 @@
 <template>
-  <div class="icon icon--plus" v-show="onRecieve">
+  <div class="icon icon--plus" v-show="onRecieve&&get_login">
     <span class="icon__mark" @click="recieve"><i class="fas fa-plus"></i></span>
   </div>
 </template>
