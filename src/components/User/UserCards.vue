@@ -2,7 +2,7 @@
   <div class="index">
     <h1>作った年賀状</h1>
     <div class="card">
-      <span v-for="card in cards" :key="card.num">
+      <span v-for="card in cards" :key="card.num" @click="$router.push('/card/'+card.public_uid+'/edit')">
         <p>{{card.share}}:{{card.updated_at}}</p>
       </span>
     </div>
