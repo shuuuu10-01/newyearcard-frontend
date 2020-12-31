@@ -2,8 +2,8 @@
   <div class="index">
     <h1>受け取った年賀状</h1>
     <div class="card">
-      <span v-for="card in cards" :key="card.num">
-        <p>{{card.share}}:{{card.updated_at}}</p>
+      <span v-for="card in cards" :key="card.num" @click="$router.push('/card/'+card.public_uid+'/show')">
+        <p>{{card.display_name}} より</p>
       </span>
     </div>
   </div>
@@ -18,32 +18,25 @@ export default {
   },
   methods:{
     set_card(){
-      return this.axios.get(this.get_api_rails+this.uid+'/where')
+      return this.axios.get(this.get_recieve+this.uid+'/where')
       .then((response)=>{
-        let share= ""
         for(let i = 0; i<response.data.data.length;i++){
-          if(response.data.data[i].share==0){
-            share = "全体公開"
-          }else if(response.data.data[i].share==1){
-            share = "フォロワー限定"
-          }else{
-            share = response.data.data[i].display_name+"へ"
-          }
           let data = { 
-            share: share,
+            display_name: response.data.data[i].display_name,
             public_uid: response.data.data[i].public_uid,
             updated_at: response.data.data[i].updated_at.substr( 0, 10 )
           }
           this.cards.push(data)
           console.log(this.cards)
         }
+        console.log(response)
       })
     }
   },
   computed: {
-    get_api_rails() {
-      return this.$store.getters.get_API_URL
-    },
+    get_recieve(){
+      return this.$store.getters.get_API_RECIEVE
+    }
   },
   props:{
     uid: String
@@ -52,11 +45,17 @@ export default {
     uid(){
       this.set_card()
     }
+  },
+  mounted(){
+    this.set_card()
   }
 }
 </script>
 
 <style scoped>
+.index{
+  margin-bottom: 30px;
+}
 .index h1{
   margin: auto;
   margin-top: 20px;
@@ -84,6 +83,11 @@ span {
 span:active {
 	border-bottom: 2px solid #abbdc4;
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+}
+span:hover {
+  color:  rgba(214, 75, 11);
+  border: 2px solid rgba(214, 75, 11);
+  background:rgba(214, 75, 11,0.2);
 }
 p{
   font-size: 17px;

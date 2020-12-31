@@ -31,7 +31,7 @@ export default {
 </script>
 <style scoped>
 .loading{
-  z-index: 1;
+  z-index: 10;
   position: fixed;
   background-color: rgb(82, 80, 79);
   animation: slide 0.3s linear;

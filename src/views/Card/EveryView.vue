@@ -27,6 +27,7 @@
     <login-mordal v-if="isOpen"/>
     <happy-new-year v-if="isShow"/>
     <view-loading :nowloading="!isShow"/>
+    <recieve-button :display_name="card.displayname"/>
   </div>
 </template>
 
@@ -37,6 +38,7 @@ import ViewLoading from '../../components/Loading/ViewLoading.vue'
 import TweetButton from '../../components/Button/TweetButton.vue'
 import LinkCopy from '../../components/Button/LinkCopy.vue'
 import HappyNewYear from '../../components/Loading/_HappyNewYear.vue'
+import RecieveButton from '../../components/Button/RecieveButton.vue'
 export default {
   data () {
     return {
@@ -59,7 +61,8 @@ export default {
     ViewLoading,
     TweetButton,
     LinkCopy,
-    HappyNewYear
+    HappyNewYear,
+    RecieveButton
   },
   methods: {
     showApi () {

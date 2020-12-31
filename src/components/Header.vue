@@ -5,13 +5,7 @@
     </div>
     <div class="u-icon">
       <div class="menu" v-if="getlogin">
-        <img :src="geticon" @click="menu=!menu"/>
-        <br>
-        <ul>
-          <li>
-            <span @click="signout" v-if="menu"><i class="fab fa-twitter"></i> ログアウト</span>
-          </li>
-        </ul>
+        <img :src="geticon" @click="$router.push('/user')"/>
       </div>
       <login-button text="ログイン"/>
     </div>
@@ -19,7 +13,6 @@
 </template>
 
 <script>
-import firebase from 'firebase/app'
 import LoginButton from './Button/LoginButton.vue'
 export default {
   components: { LoginButton },
@@ -29,15 +22,6 @@ export default {
     }
   },
   methods: {
-    signout () {
-      firebase.auth().onAuthStateChanged( (user) => {
-        firebase.auth().signOut().then(()=>{
-          console.log(user.displayName+"ログアウトしました");
-          this.$store.dispatch("logoutUser");
-          this.$router.go({path: this.$router.currentRoute.path, force: true})
-        })
-      });
-    },
     home(){
       this.$router.push('/')
     }
@@ -108,29 +92,5 @@ header .u-icon span.login-button {
 header .u-icon span.login-button:active {
 	border-bottom: 2px solid #55acee;
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
-}
-header .menu{
-  text-align: right;
-}
-header .menu span {
-  z-index: 200;
-  line-height: 45px;
-  width: 110px;
-  margin: 5px;
-  cursor: pointer;
-	display: block;
-	text-align: center;
-	text-decoration: none;
-	color:   #abbdc4;
-	background:#FFF;
-	border-radius: 4px;
-  border: 2px solid  #abbdc4;
-	box-shadow: inset 0 4px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
-}
-ul{
-  margin-top: 0;
-}
-li{
-  list-style-type : none;
 }
 </style>

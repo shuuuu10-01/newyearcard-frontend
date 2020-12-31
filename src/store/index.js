@@ -69,6 +69,9 @@ export default new Vuex.Store({
     },
     get_API_TWITTER() {
       return process.env.VUE_APP_RAILS_API_TWITTER
+    },
+    get_API_RECIEVE(){
+      return process.env.VUE_APP_RAILS_API_RECIEVE
     }
   },
   actions: {

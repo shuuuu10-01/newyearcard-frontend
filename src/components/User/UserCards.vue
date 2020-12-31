@@ -27,7 +27,7 @@ export default {
           }else if(response.data.data[i].share==1){
             share = "フォロワー限定"
           }else{
-            share = response.data.data[i].display_name+"へ"
+            share = response.data.data[i].display_name+"さんへ"
           }
           let data = { 
             share: share,
@@ -35,7 +35,6 @@ export default {
             updated_at: response.data.data[i].updated_at.substr( 0, 10 )
           }
           this.cards.push(data)
-          console.log(this.cards)
         }
       })
     }
@@ -52,13 +51,16 @@ export default {
     uid(){
       this.set_card()
     }
+  },
+  mounted(){
+    this.set_card()
   }
 }
 </script>
 
 <style scoped>
 .index{
-  
+  margin-bottom: 30px;
 }
 .index h1{
   margin: auto;

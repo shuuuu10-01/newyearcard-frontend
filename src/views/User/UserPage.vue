@@ -2,16 +2,33 @@
   <div class="page">
     <user-icon/>
     <div class="user-contents">
+      <receive-card :uid="get_uid"/>
       <user-cards :uid="get_uid"/>
+    </div>
+    <div class="logout">
+      <span @click="signout"><i class="fab fa-twitter"></i> ログアウト</span>
     </div>
   </div>
 </template>
 
 <script>
+import ReceiveCard from '../../components/User/ ReceiveCard.vue';
 import UserCards from '../../components/User/UserCards.vue';
 import UserIcon from '../../components/User/UserIcon.vue'
+import firebase from 'firebase/app'
 export default {
-  components: { UserIcon, UserCards },
+  components: { UserIcon, UserCards, ReceiveCard },
+  methods:{
+    signout () {
+      firebase.auth().onAuthStateChanged( (user) => {
+        firebase.auth().signOut().then(()=>{
+          console.log(user.displayName+"ログアウトしました");
+          this.$store.dispatch("logoutUser");
+          this.$router.go({path: this.$router.currentRoute.path, force: true})
+        })
+      });
+    },
+  },
   mounted: async function() {
     await this.$store.dispatch("auth");
     console.log("auth")
@@ -40,5 +57,25 @@ export default {
   border: 2px solid  #abbdc4;
   border-radius: 5px;
 	box-shadow: inset 0 4px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+}
+.logout span {
+  z-index: 200;
+  line-height: 45px;
+  height: 45px;
+  width: 110px;
+  margin: auto;
+  margin-bottom: 10px;
+  cursor: pointer;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color:   #ee8179;
+	background:#FFF;
+	border-radius: 4px;
+  border: 2px solid  #ee8179;
+	box-shadow: inset 0 4px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+}
+.logout span:hover{
+  background:#f5c3c098;
 }
 </style>
