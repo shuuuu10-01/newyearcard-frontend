@@ -99,7 +99,7 @@ export default {
         opacity: 0,
         duration: 1000,
         easing: "easeOutExpo",
-        delay: 1000
+        delay: 2000
       })
       animation.finished.then(()=>{
         this.start= false
@@ -158,6 +158,6 @@ export default {
   font-size: 20vw;
 }
 .colorRed{
-  color: rgba(218, 35, 22, 0.85);
+  color: rgba(218, 35, 22);
 }
 </style>

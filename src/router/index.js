@@ -4,6 +4,7 @@ import Home from '../views/Home/Home.vue'
 import About from '../views/Home/About.vue'
 import Router from '../views/Card/EveryView.vue'
 import CardForm from '../views/Card/CardForm.vue'
+import UserPage from '../views/User/UserPage.vue'
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,10 @@ const routes = [
   {
     path: '/card/:id/show',
     component: Router
+  },
+  {
+    path: '/user',
+    component: UserPage
   }
 ]
 

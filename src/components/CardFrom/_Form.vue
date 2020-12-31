@@ -13,7 +13,7 @@
       <div class="cp_ipselect cp_sl04">
         <select v-model="_share" required>
           <option value="" hidden>公開範囲の設定</option>
-          <option value="0">公開</option>
+          <option value="0">全体公開</option>
           <option value="1" v-if="get_login">フォロワー限定</option>
           <option value="2" v-if="get_login">フォロワーを指定</option>
         </select>
