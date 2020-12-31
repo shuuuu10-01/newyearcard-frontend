@@ -90,6 +90,9 @@ span:active {
 	border-bottom: 2px solid #abbdc4;
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
 }
+span:hover{
+  background:rgba(172, 172, 172,0.2);
+}
 p{
   font-size: 17px;
 }

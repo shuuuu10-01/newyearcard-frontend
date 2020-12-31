@@ -147,9 +147,6 @@ export default {
   justify-content: center;
   display: flex;
 }
-.ml4 span{
-  
-}
 .ml4 .letters {
   position: absolute;
   margin: auto;

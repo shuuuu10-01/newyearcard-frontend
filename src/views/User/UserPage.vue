@@ -8,23 +8,30 @@
     <div class="logout">
       <span @click="signout"><i class="fab fa-twitter"></i> ログアウト</span>
     </div>
+    <form-button/>
   </div>
 </template>
 
 <script>
 import ReceiveCard from '../../components/User/ ReceiveCard.vue';
 import UserCards from '../../components/User/UserCards.vue';
-import UserIcon from '../../components/User/UserIcon.vue'
+import UserIcon from '../../components/User/UserIcon.vue';
+import FormButton from '../../components/Button/FormButton.vue'
 import firebase from 'firebase/app'
 export default {
-  components: { UserIcon, UserCards, ReceiveCard },
+  components: { 
+    UserIcon, 
+    UserCards, 
+    ReceiveCard,
+    FormButton,
+  },
   methods:{
     signout () {
       firebase.auth().onAuthStateChanged( (user) => {
         firebase.auth().signOut().then(()=>{
           console.log(user.displayName+"ログアウトしました");
           this.$store.dispatch("logoutUser");
-          this.$router.go({path: this.$router.currentRoute.path, force: true})
+          this.$router.push('/')
         })
       });
     },
