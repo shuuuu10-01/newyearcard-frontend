@@ -16,7 +16,7 @@
         </select>
       </div>
         <div class="dm" v-show="dm">
-          <input type="text" v-model="card.dm" placeholder="半角英数で入力してください" pattern="^[0-9A-Za-z]+$">
+          <input type="text" v-model="card.dm" placeholder="半角英数で入力してください">
           <p class="dm-p">@</p>
         </div>
         
