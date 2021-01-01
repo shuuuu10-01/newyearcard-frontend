@@ -45,7 +45,7 @@ export default {
 .icon {
   z-index: 1;
   position: fixed;
-  right: 10px;
+  left: 10px;
   bottom: 60px;
   width: 70px;
   height: 70px;

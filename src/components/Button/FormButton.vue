@@ -6,7 +6,7 @@
 
 <style scoped>
 .icon {
-  z-index: 100;
+  z-index: 5;
   position: fixed;
   right: 10px;
   bottom: 60px;

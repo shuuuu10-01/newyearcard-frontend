@@ -28,6 +28,7 @@
     <happy-new-year v-if="isShow"/>
     <view-loading :nowloading="!isShow"/>
     <recieve-button :display_name="card.displayname" :onRecieve="onRecieve"/>
+    <form-button v-if="isShow" />
   </div>
 </template>
 
@@ -39,6 +40,7 @@ import TweetButton from '../../components/Button/TweetButton.vue'
 import LinkCopy from '../../components/Button/LinkCopy.vue'
 import HappyNewYear from '../../components/Loading/_HappyNewYear.vue'
 import RecieveButton from '../../components/Button/RecieveButton.vue'
+import FormButton from '../../components/Button/FormButton.vue'
 export default {
   data () {
     return {
@@ -63,7 +65,8 @@ export default {
     TweetButton,
     LinkCopy,
     HappyNewYear,
-    RecieveButton
+    RecieveButton,
+    FormButton
   },
   methods: {
     showApi () {
