@@ -32,9 +32,9 @@ var ml4 = {};
 ml4.opacityIn = [0,1];
 ml4.scaleIn = [0.2, 1];
 ml4.scaleOut = 3;
-ml4.durationIn = 800;
-ml4.durationOut = 600;
-ml4.delay = 500;
+ml4.durationIn = 600;
+ml4.durationOut = 500;
+ml4.delay = 50;
 
 export default {
   data() {
@@ -99,7 +99,7 @@ export default {
         opacity: 0,
         duration: 1000,
         easing: "easeOutExpo",
-        delay: 2000
+        delay: 500
       })
       animation.finished.then(()=>{
         this.start= false
