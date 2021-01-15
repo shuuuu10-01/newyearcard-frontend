@@ -6,6 +6,7 @@
 
 <style scoped>
 .icon {
+  position: relative;
   z-index: 5;
   position: fixed;
   right: 10px;
@@ -16,8 +17,8 @@
   border: 2px solid #abbdc4;
   border-radius: 50%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center;
+  justify-content: center; */
   box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
   cursor: pointer;
 }
@@ -25,8 +26,10 @@
   background: #ccc;
 }
 i{
-  line-height: 55px;
+  position: absolute;
+  line-height: 70px;
   color: #484f52;
-  font-size: 30px;
+  font-size: 30.5px;
+  left: 31%;
 }
 </style>
