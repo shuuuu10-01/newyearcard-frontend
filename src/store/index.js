@@ -16,7 +16,14 @@ export default new Vuex.Store({
       text:"",
       gif: "",
     },
-    isLogin: false //ログインしているかどうか
+    isLogin: false, //ログインしているかどうか
+    position: {
+      top: "",
+      left: "",
+      width: "",
+      height: "",
+      select: false
+    }
   },
   mutations: { //stateの値の変更
     setUser(state, currentUser) {
@@ -47,6 +54,13 @@ export default new Vuex.Store({
       state.user.uid="";
       state.isLogin = false;
     },
+    setPosition(state,value){
+      state.position.top = value.top
+      state.position.left = value.left
+      state.position.height = value.height
+      state.position.width = value.width
+      state.position.select = value.select
+    }
   },
   getters: {
     get_user_photoURL(state) {
@@ -63,6 +77,9 @@ export default new Vuex.Store({
     },
     get_isLogin(state) {
       return state.isLogin
+    },
+    get_position(state){
+      return state.position
     },
     get_API_URL(){
       return process.env.VUE_APP_RAILS_API_POSTS
@@ -96,6 +113,9 @@ export default new Vuex.Store({
     },
     logoutUser({ commit }){
       commit("logoutUser")
+    },
+    setPosition({commit},value){
+      commit("setPosition",value)
     }
   }
 });

@@ -3,29 +3,13 @@
     <h3>メッセージの配置を指定してください</h3>
     <div class="position">
       <video :src="get_video"></video>
-      <input type="checkbox" id="tl-00"/>
-      <label for="tl-00" class="tl-00"></label>
-      <input type="checkbox" id="tl-01"/>
-      <label for="tl-01" class="tl-01"></label>
-      <input type="checkbox" id="tl-02"/>
-      <label for="tl-02" class="tl-02"></label>
-
-
-      <input type="checkbox" id="tl-10"/>
-      <label for="tl-10" class="tl-10"></label>
-      <input type="checkbox" id="tl-11"/>
-      <label for="tl-11" class="tl-11"></label>
-      <input type="checkbox" id="tl-12"/>
-      <label for="tl-12" class="tl-12"></label>
-
-
-      <input type="checkbox" id="tl-20"/>
-      <label for="tl-20" class="tl-20"></label>
-      <input type="checkbox" id="tl-21"/>
-      <label for="tl-21" class="tl-21"></label>
-      <input type="checkbox" id="tl-22"/>
-      <label for="tl-22" class="tl-22"></label>
+      <div v-for="button in buttons" :key="button.num">
+        <input type="checkbox" :id="button.name" :value="button.value" v-model="positions"/>
+        <label :for="button.name" :class="button.name"></label>
+      </div>
+      <button @click="setPosition()">kakuti</button>
     </div>
+    <button @click="check()">check</button>
   </div>
 </template>
 
@@ -33,7 +17,84 @@
 export default {
   data() {
     return {
-      open: false
+      open: false,
+      positions:[],
+      buttons: [
+        {
+          name:"tl-00",
+          value:"00"
+        },
+        {
+          name:"tl-01",
+          value:"01"
+        },
+        {
+          name:"tl-02",
+          value:"02"
+        },
+        {
+          name:"tl-10",
+          value:"10"
+        },
+        {
+          name:"tl-11",
+          value:"11"
+        },
+        {
+          name:"tl-12",
+          value:"12"
+        },
+        {
+          name:"tl-20",
+          value:"20"
+        },
+        {
+          name:"tl-21",
+          value:"21"
+        },
+        {
+          name:"tl-22",
+          value:"22"
+        },
+      ],
+      pos:{
+        top: '',
+        left: '',
+        height: '',
+        width: '',
+        select: false
+      }
+    }
+  },
+  methods: {
+    setPosition(){
+      //選択した部分が適切かの判定とその後の処理
+      let f = function (a, b) {
+        return a - b
+      }
+      const array= this.positions
+      const pos = array.sort(f)
+      if(pos.length==1){
+        const t = parseInt(pos[0]/10)
+        const l = pos[0]%10
+        console.log(t,l)
+        this.setTH(t,l,1,1)
+      }
+    },
+    setTH(t,l,h,w){
+      if(h==0){
+        this.pos.select = false
+      }else {
+        this.pos.select = true
+      }
+      this.pos.top = t*32 + 2
+      this.pos.left = l*32 + 2
+      this.pos.height = h*30
+      this.pos.width = w*30,
+      this.$store.dispatch("setPosition",this.pos)
+    },
+    check(){
+      console.log(this.$store.state)
     }
   },
   computed:{
@@ -42,8 +103,14 @@ export default {
     },
     get_video() {
       return  "/Video/"+this.get_form +".mp4"
-    }
+    },
   },
+  // watch: {
+  //   positions(){
+  //     //選択した部分が四角かどうかの判定とその後の処理
+  //     this.setPosition()
+  //   }
+  // }
 }
 </script>
 
@@ -68,7 +135,7 @@ input[type="checkbox"]+label{
   cursor: pointer;
 	text-decoration: none;
 	color:  #55acee;
-	z-index: 1000;
+	z-index: 1;
   display: flex;
 }
 input[type="checkbox"]+label::before{
