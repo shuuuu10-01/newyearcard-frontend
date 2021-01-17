@@ -1,9 +1,13 @@
 <template>
   <div class="gif">
-    <video :src="gifname" loop autoplay muted playsinline/>
-    <span :class="_gif">
+    <video :src="gifname" loop autoplay muted playsinline id="video"/>
+    <div class="custom" :style="[styles, font]" v-if="get_position.select">
       <nl2br class="nl2br" tag="div" :text="_text"/>
-    </span>
+    </div>
+    <!-- 今までの表示の仕組み -->
+    <div :class="_gif" v-if="!get_position.select">
+      <nl2br class="nl2br" tag="div" :text="_text"/>
+    </div>
   </div>
 </template>
 
@@ -12,7 +16,20 @@ import Nl2br from 'vue-nl2br'
 export default {
   data() {
     return {
-      gifname: ""
+      gifname: "",
+      styles: {
+        top:"",
+        left: "",
+        height: "",
+        width: ""
+      },
+      video:{
+        height: 0,
+        width: 0
+      },
+      font:{
+        fontSize: "20px"
+      }
     }
   },
   props: {
@@ -22,8 +39,31 @@ export default {
   components:{
     Nl2br
   },
+  methods:{
+    setVideo(){
+      const width = document.getElementById('setpos').clientWidth
+      const height = document.getElementById('setpos').clientHeight
+      this.video.width = width
+      this.video.height = height
+      this.font = {
+      fontSize: width*0.03+'px'
+      }
+    },
+  },
   mounted(){
     this.gifname = "/Video/"+this._gif+".mp4"
+    this.styles = {
+      top: this.get_position.top+"%",
+      left: this.get_position.left+"%",
+      height: this.get_position.height+"%",
+      width: this.get_position.width+"%",
+    }
+    window.addEventListener('resize', this.setVideo)
+  },
+  computed: {
+    get_position() {
+      return this.$store.getters.get_position
+    },
   }
 }
 </script>
@@ -68,6 +108,14 @@ video {
   height: 35%;
   top: 65%;
   left: 20%;
+  text-align: left;
+  box-sizing: inherit;
+  word-break: break-all;
+  font-size: 3vw;
+  overflow: hidden;
+}
+.custom {
+  position: absolute;
   text-align: left;
   box-sizing: inherit;
   word-break: break-all;

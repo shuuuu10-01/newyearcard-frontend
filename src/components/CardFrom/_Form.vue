@@ -4,6 +4,7 @@
     <h1>年賀状の作成</h1>
     <form class="form" @submit.prevent>
       <hooper/>
+      <position/>
       <div class="nologin" v-show="!get_login">
           <input type="text" :value="get_displayName" placeholder="ユーザー名(10文字まで)" maxlength='10' @input="updateName($event.target.value)">
         </div>
@@ -42,6 +43,7 @@
 import FormLoading from '../Loading/FormLoading.vue'
 import GifPreview from './__GifPreview.vue'
 import Hooper from './__Hooper.vue'
+import Position from './__PositionDrag.vue'
 
 export default {
   data () {
@@ -60,6 +62,7 @@ export default {
     Hooper,
     FormLoading,
     GifPreview,
+    Position,
   },
   methods: {
     updateText(value) {
@@ -112,7 +115,8 @@ export default {
         gif: this.get_form.gif,
         share: this.card.status,
         display_name: this.get_displayName,
-        DM_id: this.card.dm
+        DM_id: this.card.dm,
+
       }
       console.log(data)
       if(confirm("年賀状を作成してもよろしいですか？")){
@@ -123,11 +127,15 @@ export default {
           gif: this.get_form.gif,
           share: this.card.status,
           display_name: this.get_displayName,
-          DM_id: this.card.dm
+          DM_id: this.card.dm,
+          top: this.get_position.top,
+          left: this.get_position.left,
+          width: this.get_position.width,
+          height: this.get_position.height,
+          select: this.get_position.select
         }
         this.axios.post(this.get_API_URL+'create',data)
         .then(response => {
-          console.log(response)
           if(response.data.status == "SUCCESS"){
           //作ったカードのページへ遷移
           this.updateText("");
@@ -141,7 +149,6 @@ export default {
     },
     checkDM() {
       return this.axios.get(this.get_api_twitter+this.get_uid+"/"+this.card.dm+"/check").then(response=>{
-        console.log(response)
         if(response.data.relationship.source.followed_by==true){
           this.card.status = response.data.relationship.target.id_str
           return true
@@ -193,6 +200,9 @@ export default {
     get_api_twitter() {
       return this.$store.getters.get_API_TWITTER
     },
+    get_position() {
+      return this.$store.getters.get_position
+    }
   }
 }
 </script>
@@ -203,6 +213,7 @@ export default {
   border-radius: 5px;
   height: auto;
   width: 90%;
+  max-width: 800px;
   margin: auto;
 }
 .form-wrap h1 {
@@ -211,6 +222,11 @@ export default {
   border-radius: 30px;
   width: 50%;
   font-size: 4vw;
+}
+@media (min-width: 888px) {
+  .form-wrap h1 {
+    font-size: 35px;
+  }
 }
 .form .form-p {
   margin: auto;

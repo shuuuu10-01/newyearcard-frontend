@@ -61,6 +61,7 @@ export default {
   margin-top: 20px;
   background-color: white;
   width: 95%;
+  max-width: 800px;
   border: 2px solid  #abbdc4;
   border-radius: 5px;
 	box-shadow: inset 0 4px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);

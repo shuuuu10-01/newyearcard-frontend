@@ -4,6 +4,7 @@
     <h1>年賀状の編集</h1>
     <form class="form" @submit.prevent>
       <hooper/>
+      <position/>
       <div class="form-input">
         <textarea type="text" name="message" placeholder="Message" :value="get_form.text" @input="updateText($event.target.value)" required></textarea>
       </div>
@@ -38,6 +39,7 @@
 import FormLoading from '../Loading/FormLoading.vue'
 import GifPreview from './__GifPreview.vue'
 import Hooper from './__Hooper.vue'
+import Position from './__PositionDrag.vue'
 
 export default {
   data () {
@@ -56,6 +58,7 @@ export default {
     Hooper,
     FormLoading,
     GifPreview,
+    Position
   },
   methods: {
     updateText(value) {
@@ -101,15 +104,6 @@ export default {
           }
         }
       }
-      console.log("c-DM")
-      const data = {
-        text: this.get_form.text,
-        uid: this.get_uid,
-        gif: this.get_form.gif,
-        share: this.card.status,
-        display_name: this.get_displayName
-      }
-      console.log(data)
       if(confirm("年賀状を上書き保存してもよろしいですか？")){
         this.loading = true
         const data = {
@@ -136,7 +130,6 @@ export default {
     },
     checkDM() {
       return this.axios.get(this.get_api_twitter+this.get_uid+"/"+this.card.dm+"/check").then(response=>{
-        console.log(response)
         if(response.data.relationship.source.followed_by==true){
           this.card.status = response.data.relationship.target.id_str
           return true
@@ -157,7 +150,6 @@ export default {
     showApi () {
       return this.axios.get(this.get_api_rails+this.$route.params.id+'/show', this.title)
       .then((response) => {
-        console.log(response)
         this.updateText(response.data.data.text)
         this.$store.dispatch("setGif",response.data.data.gif)
         if(response.data.data.share==0||response.data.data.share==1){
@@ -219,7 +211,6 @@ export default {
       this.$router.push('/')
     }
     const self = await this.showApi();
-    console.log(self)
     if (self) {
       await this.checkUser();
       console.log("check")
@@ -234,6 +225,7 @@ export default {
   border-radius: 5px;
   height: auto;
   width: 90%;
+  max-width: 800px;
   margin: auto;
 }
 .form-wrap h1 {
@@ -242,6 +234,11 @@ export default {
   border-radius: 30px;
   width: 50%;
   font-size: 4vw;
+}
+@media (min-width: 888px) {
+  .form-wrap h1 {
+    font-size: 35px;
+  }
 }
 .form .form-p {
   margin: auto;

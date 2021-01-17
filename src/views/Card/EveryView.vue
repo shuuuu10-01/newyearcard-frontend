@@ -50,7 +50,14 @@ export default {
         gif:"",
         uid: "",
         share: "",
-        displayname:""
+        displayname:"",
+      },
+      position: {
+        top:0,
+        left:0,
+        width:0,
+        height:0,
+        select: false,
       },
       isShow: false,
       isOpen: false,
@@ -77,12 +84,22 @@ export default {
         this.card.uid = response.data.data.uid
         this.card.share = response.data.data.share
         this.card.displayname = response.data.data.display_name
+        //Positionの指定
+        if(response.data.data.select){
+          this.position={
+            top: response.data.data.top,
+            left: response.data.data.left,
+            width: response.data.data.width,
+            height: response.data.data.height,
+            select: true
+          }
+          this.$store.dispatch("setPosition",this.position)
+          // console.log(this.position)
+        }
         if(this.get_uid == this.card.uid){
-          console.log("you!!")
           this.isShow = true
           return false
         }
-        console.log(this.card.share,"showwww")
         return true
       }).catch(()=>{ //error処理
         alert("カードが存在しません")
@@ -112,13 +129,11 @@ export default {
             this.onRecieve = true
             return true
           } else {
-            console.log("cF-false")
             alert("このページは限定公開に設定されています")
             this.$router.push("/")
             throw new Error('throw Error');
           }
         }).catch(()=>{
-          console.log("cF-e")
           alert("エラーが発生しました")
           this.$router.push("/")
         })

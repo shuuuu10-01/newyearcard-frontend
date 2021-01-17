@@ -17,9 +17,6 @@
           <nl2br class="nl2br" tag="div" :text="get_form.text"/>
         </div>
       </vue-draggable-resizable>
-      <div>
-
-      </div>
     </div>
   </div>
 </template>
@@ -63,6 +60,7 @@ export default {
         height: (this.drag.height/this.video.height)*100,
         select: true
       }
+      console.log(this.pos)
       this.$store.dispatch("setPosition",this.pos)
     },
     setVideo(){
