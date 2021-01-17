@@ -41,8 +41,8 @@ export default {
   },
   methods:{
     setVideo(){
-      const width = document.getElementById('setpos').clientWidth
-      const height = document.getElementById('setpos').clientHeight
+      const width = document.getElementById('video').clientWidth
+      const height = document.getElementById('video').clientHeight
       this.video.width = width
       this.video.height = height
       this.font = {
@@ -58,12 +58,18 @@ export default {
       height: this.get_position.height+"%",
       width: this.get_position.width+"%",
     }
+    this.setVideo()
     window.addEventListener('resize', this.setVideo)
   },
   computed: {
     get_position() {
       return this.$store.getters.get_position
     },
+  },
+  watch: {
+    get_position(){
+      this.setVideo()
+    }
   }
 }
 </script>
