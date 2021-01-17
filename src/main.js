@@ -8,7 +8,7 @@ import VueFreezeframe from "vue-freezeframe"
 import './plugins/firebase.js'
 import firebase from 'firebase'
 import VueClipboard from 'vue-clipboard2'//クリップボードにURLをコピーするために追加
-
+import "vue-draggable-resizable/dist/VueDraggableResizable.css";
 
 Vue.config.productionTip = false
 
