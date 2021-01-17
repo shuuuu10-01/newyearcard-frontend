@@ -81,11 +81,13 @@ export default {
       this.drag.width = width
       this.drag.height = height
       this.setTH()
+      this.setVideo()
     },
     onDrag: function (x, y) {
       this.drag.x = x
       this.drag.y = y
       this.setTH()
+      this.setVideo()
     }
   },
   computed:{
