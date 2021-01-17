@@ -1,29 +1,27 @@
 <template>
   <div class="welcome" v-show="start">
-      <h1 class="ml2">
-        <span class="letter colorRed">H</span>
-        <span class="letter colorRed">a</span>
-        <span class="letter colorRed">p</span>
-        <span class="letter colorRed">p</span>
-        <span class="letter colorRed">y</span>
-        <span class="letter colorRed">N</span>
-        <span class="letter colorRed">e</span>
-        <span class="letter colorRed">w</span>
-        <span class="letter colorRed">Y</span>
-        <span class="letter colorRed">e</span>
-        <span class="letter colorRed">a</span>
-        <span class="letter colorRed">r</span>
-        <!-- <span class="letter">2</span>
-        <span class="letter">0</span>
-        <span class="letter">2</span>
-        <span class="letter">1</span>  -->
-      </h1>
-      <h1 class="ml4">
-        <span class="letters letters-1">3</span>
-        <span class="letters letters-2">2</span>
-        <span class="letters letters-3">1</span>
-      </h1>
-    </div>
+    <div @click="start=false" class="skip">クリックでスキップ>></div>
+    <br>
+    <h1 class="ml2">
+      <span class="letter colorRed">H</span>
+      <span class="letter colorRed">a</span>
+      <span class="letter colorRed">p</span>
+      <span class="letter colorRed">p</span>
+      <span class="letter colorRed">y</span>
+      <span class="letter colorRed">N</span>
+      <span class="letter colorRed">e</span>
+      <span class="letter colorRed">w</span>
+      <span class="letter colorRed">Y</span>
+      <span class="letter colorRed">e</span>
+      <span class="letter colorRed">a</span>
+      <span class="letter colorRed">r</span>
+    </h1>
+    <h1 class="ml4">
+      <span class="letters letters-1">3</span>
+      <span class="letters letters-2">2</span>
+      <span class="letters letters-3">1</span>
+    </h1>
+  </div>
 </template>
 
 <script>
@@ -116,6 +114,16 @@ export default {
 </script>
 
 <style scoped>
+.skip{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: rgb(161, 161, 161);
+  cursor: pointer;
+}
+.skip:hover{
+  color: black;
+}
 .welcome{
   z-index: 10;
   position: fixed;

@@ -92,12 +92,10 @@ export default {
     },
     async checkUser() {
       if (this.card.share==0) {
-        console.log("cU-0-ok")
         this.isShow = true
         this.onRecieve = true
         return true
       } else if (this.card.share==1){
-        console.log("cU-1")
         await this.checkFriend()
       } else {
         await this.checkDM();
@@ -109,9 +107,7 @@ export default {
       if(this.get_uid !="") {
         await this.axios.get(this.get_api_twitter+this.card.uid+'/'+this.get_uid+'/friendships')
         .then(response => {
-          console.log(response)
           if (response.data.relationship.source.followed_by){
-            console.log("cF-true")
             this.isShow = true
             this.onRecieve = true
             return true
@@ -152,12 +148,9 @@ export default {
   },
   mounted: async function() {
     await this.$store.dispatch("auth");
-    console.log("auth")
     const self = await this.showApi();
-    console.log(self)
     if (self) {
       await this.checkUser();
-      console.log("check")
     }
   },
   computed: {
