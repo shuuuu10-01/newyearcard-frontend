@@ -1,6 +1,7 @@
 <template>
   <div class="index">
     <h1>受け取った年賀状</h1>
+    <loader :loading="loader"/>
     <div class="card">
       <span v-for="card in cards" :key="card.num" @click="$router.push('/card/'+card.public_uid+'/show')">
         <p>{{card.display_name}} より</p>
@@ -10,10 +11,13 @@
 </template>
 
 <script>
+import Loader from '../Loading/Loader.vue'
 export default {
+  components: { Loader },
   data() {
     return {
-      cards:[]
+      cards:[],
+      loader: true
     }
   },
   methods:{
@@ -27,9 +31,8 @@ export default {
             updated_at: response.data.data[i].updated_at.substr( 0, 10 )
           }
           this.cards.push(data)
-          console.log(this.cards)
         }
-        console.log(response)
+        this.loader=false
       })
     }
   },
