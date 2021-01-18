@@ -7,7 +7,7 @@
         :x="0"
         :y="0"
         :w="100" 
-        :h="100" 
+        :h="50" 
         :parent="true"
         @dragging="onDrag" 
         @resizing="onResize" 
