@@ -2,7 +2,7 @@
   <div v-show="get_form.gif!=''">
     <h3>メッセージの配置を指定してください</h3>
     <div class="position">
-      <video :src="get_video" ref="video" id="setpos"></video>
+      <video :src="get_video" ref="video" id="setpos" playsinline></video>
       <vue-draggable-resizable
         :x="0"
         :y="0"
