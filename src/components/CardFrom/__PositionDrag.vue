@@ -92,6 +92,10 @@ export default {
     get_form() {
       return  this.$store.getters.get_form
     },
+    get_position(){
+      return this.$store.getters.get_position
+
+    },
     get_video() {
       return  "/Video/"+this.get_form.gif +".mp4"
     },
@@ -125,6 +129,8 @@ export default {
 }
 video{
   width:100%;
+  height: 100%;
+  top: 0;
 }
 .move {
   position: absolute;
