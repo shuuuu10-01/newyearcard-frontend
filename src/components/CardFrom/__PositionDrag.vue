@@ -1,6 +1,6 @@
 <template>
   <div v-if="get_form.gif!=''">
-    <h3>メッセージの配置を指定してください</h3>
+    <h3>メッセージを配置してください</h3>
     <div class="position">
       <video ref="video" id="setpos" playsinline>
         <source :src="get_video" type='video/mp4'>
