@@ -95,6 +95,11 @@ export default {
           }
           this.$store.dispatch("setPosition",this.position)
           // console.log(this.position)
+        } else {
+          this.position = {
+            select:false
+          }
+          this.$store.dispatch("setPosition",this.position)
         }
         if(this.get_uid == this.card.uid){
           this.isShow = true
