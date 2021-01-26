@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <p>© 2020 shuuuu </p>
+    <p>© {{ new Date().getFullYear()}} shuuuu </p>
   </div>
 </template>
 
