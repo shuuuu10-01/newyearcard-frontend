@@ -6,7 +6,7 @@
       <router-link to="/about">About</router-link> |
       <router-link to="/card/new">New</router-link>
     </div> -->
-    <router-view/>
+    <router-view class="main"/>
     <Footer />
   </div>
 </template>
@@ -26,6 +26,9 @@ export default {
 body { /* こいつのせいでヘッダーがおかしくなった */
   margin: 0;
   background: url(../public/img/NewYear-背景.png);
+}
+.main {
+  min-height: 100vh;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -48,4 +51,5 @@ body { /* こいつのせいでヘッダーがおかしくなった */
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
 </style>

@@ -13,8 +13,6 @@
   position: relative;/* ←相対位置 */
   box-sizing: border-box;
   /* ↑ヘッダーやフッターを含むすべての要素の高さ＝min-height:100vhになるように指定 */
-  height: 100%;
-  min-height: 80vh;
 }
 .footer p {
   position: absolute;/* ←絶対位置 */
