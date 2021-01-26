@@ -4,7 +4,7 @@
     <h1>年賀状の作成</h1>
     <form class="form" @submit.prevent>
       <hooper/>
-      <position/>
+      <!-- <position/> -->
       <div class="nologin" v-show="!get_login">
           <input type="text" :value="get_displayName" placeholder="ユーザー名(10文字まで)" maxlength='10' @input="updateName($event.target.value)">
         </div>
@@ -43,7 +43,7 @@
 import FormLoading from '../Loading/FormLoading.vue'
 import GifPreview from './__GifPreview.vue'
 import Hooper from './__Hooper.vue'
-import Position from './__PositionDrag.vue'
+// import Position from './__PositionDrag.vue'
 
 export default {
   data () {
@@ -62,7 +62,7 @@ export default {
     Hooper,
     FormLoading,
     GifPreview,
-    Position,
+    // Position,
   },
   methods: {
     updateText(value) {

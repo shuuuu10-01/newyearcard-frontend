@@ -4,7 +4,7 @@
     <h1>年賀状の編集</h1>
     <form class="form" @submit.prevent>
       <hooper/>
-      <position/>
+      <!-- <position/> -->
       <div class="form-input">
         <textarea type="text" name="message" placeholder="Message" :value="get_form.text" @input="updateText($event.target.value)" required></textarea>
       </div>
@@ -39,7 +39,7 @@
 import FormLoading from '../Loading/FormLoading.vue'
 import GifPreview from './__GifPreview.vue'
 import Hooper from './__Hooper.vue'
-import Position from './__PositionDrag.vue'
+// import Position from './__PositionDrag.vue'
 
 export default {
   data () {
@@ -58,7 +58,7 @@ export default {
     Hooper,
     FormLoading,
     GifPreview,
-    Position
+    // Position
   },
   methods: {
     updateText(value) {
