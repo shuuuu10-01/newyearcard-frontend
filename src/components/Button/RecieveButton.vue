@@ -15,7 +15,7 @@ export default {
           public_uid: this.$route.params.id
         }
         console.log(data)
-        this.axios.post(this.get_recieve+'add',data).then((response)=>{
+        this.axios.post(this.get_recieve+'add',data,this.get_token).then((response)=>{
           console.log(response)
         }).catch(()=>{
           alert("すでに受け取っています")
@@ -32,6 +32,9 @@ export default {
     },
     get_recieve(){
       return this.$store.getters.get_API_RECIEVE
+    },
+    get_token(){
+      return this.$store.getters.get_ACCESS_TOKEN
     }
   },
   props:{

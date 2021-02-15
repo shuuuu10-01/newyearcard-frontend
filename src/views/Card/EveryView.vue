@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     showApi () {
-      return this.axios.get(this.get_api_rails+this.$route.params.id+'/show', this.title)
+      return this.axios.get(this.get_api_rails+this.$route.params.id+'/show', this.title,this.get_token)
       .then((response) => {
         this.card.text = response.data.data.text
         this.card.gif = response.data.data.gif
@@ -127,7 +127,7 @@ export default {
     async checkFriend() { //cardを作成した人のuidとみる人のuidで関係性を確認
     console.log("startCheck")
       if(this.get_uid !="") {
-        await this.axios.get(this.get_api_twitter+this.card.uid+'/'+this.get_uid+'/friendships')
+        await this.axios.get(this.get_api_twitter+this.card.uid+'/'+this.get_uid+'/friendships',this.get_token)
         .then(response => {
           if (response.data.relationship.source.followed_by){
             this.isShow = true
@@ -192,6 +192,9 @@ export default {
     get_login(){
       return this.$store.getters.get_isLogin
     },
+    get_token(){
+      return this.$store.getters.get_ACCESS_TOKEN
+    }
   }
 }
 </script>

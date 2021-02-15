@@ -22,7 +22,7 @@ export default {
   },
   methods:{
     set_card(){
-      return this.axios.get(this.get_recieve+this.uid+'/where')
+      return this.axios.get(this.get_recieve+this.uid+'/where',this.get_token)
       .then((response)=>{
         for(let i = 0; i<response.data.data.length;i++){
           let data = { 
@@ -39,6 +39,9 @@ export default {
   computed: {
     get_recieve(){
       return this.$store.getters.get_API_RECIEVE
+    },
+    get_token(){
+      return this.$store.getters.get_ACCESS_TOKEN
     }
   },
   props:{
