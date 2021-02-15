@@ -150,7 +150,7 @@ export default {
       })
     },
     showApi () {
-      return this.axios.get(this.get_api_rails+this.$route.params.id+'/show', this.title,this.get_token)
+      return this.axios.get(this.get_api_rails+this.$route.params.id+'/show',this.get_token)
       .then((response) => {
         this.updateText(response.data.data.text)
         this.$store.dispatch("setGif",response.data.data.gif)

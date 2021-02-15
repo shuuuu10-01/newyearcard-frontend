@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     showApi () {
-      return this.axios.get(this.get_api_rails+this.$route.params.id+'/show', this.title,this.get_token)
+      return this.axios.get(this.get_api_rails+this.$route.params.id+'/show',this.get_token)
       .then((response) => {
         this.card.text = response.data.data.text
         this.card.gif = response.data.data.gif
