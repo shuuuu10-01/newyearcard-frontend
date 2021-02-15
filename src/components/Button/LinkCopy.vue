@@ -9,12 +9,10 @@ export default {
   methods: {
     copy(){
       this.$copyText("https://newyearmaker.netlify.app"+this.$route.path)
-      .then(function(e){
+      .then(function(){
         alert('コピーしました')
-        console.log(e)
-      },function(e) {
+      },function() {
         alert("コピーに失敗しました")
-        console.log(e)
       })
     }
   }

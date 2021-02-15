@@ -77,7 +77,6 @@ export default {
       if(pos.length==1){
         const t = parseInt(pos[0]/10)
         const l = pos[0]%10
-        console.log(t,l)
         this.setTH(t,l,1,1)
       }
     },
@@ -93,9 +92,6 @@ export default {
       this.pos.width = w*30,
       this.$store.dispatch("setPosition",this.pos)
     },
-    check(){
-      console.log(this.$store.state)
-    }
   },
   computed:{
     get_form() {

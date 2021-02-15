@@ -89,13 +89,15 @@ export default new Vuex.Store({
     },
     get_API_RECIEVE(){
       return process.env.VUE_APP_RAILS_API_RECIEVE
+    },
+    get_ACCESS_TOKEN(){
+      return {headers:{'token': process.env.VUE_APP_ACCESS_TOKEN}}
     }
   },
   actions: {
     async auth({ commit }) {
       return new Promise(resolve => {
         firebase.auth().onAuthStateChanged(currentUser => {
-          console.log(currentUser)
           if (currentUser) {
             commit("setUser", currentUser);
           } else {

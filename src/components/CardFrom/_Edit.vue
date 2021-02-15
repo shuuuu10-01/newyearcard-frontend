@@ -114,13 +114,15 @@ export default {
           display_name: this.get_displayName,
           DM_id: this.card.dm
         }
-        this.axios.post(this.get_API_URL+this.$route.params.id+'/update',data)
+        this.axios.post(this.get_API_URL+this.$route.params.id+'/update',data,this.get_token)
         .then(response => {
-          console.log(response)
           if(response.data.status == "SUCCESS"){
           //作ったカードのページへ遷移
           this.updateText("");
           this.$router.push({ path: `/card/${response.data.data.public_uid}/show`});
+          }else {
+            alert("エラーが発生しました。")
+            this.loading = false
           }
         }).catch (()=>{
           alert("エラーが発生しました。")
@@ -129,7 +131,7 @@ export default {
       }
     },
     checkDM() {
-      return this.axios.get(this.get_api_twitter+this.get_uid+"/"+this.card.dm+"/check").then(response=>{
+      return this.axios.get(this.get_api_twitter+this.get_uid+"/"+this.card.dm+"/check",this.get_token).then(response=>{
         if(response.data.relationship.source.followed_by==true){
           this.card.status = response.data.relationship.target.id_str
           return true
@@ -148,7 +150,7 @@ export default {
       })
     },
     showApi () {
-      return this.axios.get(this.get_api_rails+this.$route.params.id+'/show', this.title)
+      return this.axios.get(this.get_api_rails+this.$route.params.id+'/show',this.get_token)
       .then((response) => {
         this.updateText(response.data.data.text)
         this.$store.dispatch("setGif",response.data.data.gif)
@@ -202,10 +204,12 @@ export default {
     get_api_rails() {
       return this.$store.getters.get_API_URL
     },
+    get_token(){
+      return this.$store.getters.get_ACCESS_TOKEN
+    }
   },
   mounted: async function() {
     await this.$store.dispatch("auth");
-    console.log("auth")
     if(!this.get_login){
       alert("ログインが必要です")
       this.$router.push('/')
@@ -213,7 +217,6 @@ export default {
     const self = await this.showApi();
     if (self) {
       await this.checkUser();
-      console.log("check")
     }
   },
 }

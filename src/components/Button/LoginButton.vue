@@ -12,7 +12,6 @@ export default {
       firebase.auth().signInWithPopup(provider)
         .then(
           result => {
-            console.log("signin",result.user)
             if (result.user) {
               this.$router.go({path: this.$router.currentRoute.path, force: true})
             } else {

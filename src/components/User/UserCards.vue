@@ -22,7 +22,7 @@ export default {
   },
   methods:{
     set_card(){
-      return this.axios.get(this.get_api_rails+this.uid+'/where')
+      return this.axios.get(this.get_api_rails+this.uid+'/where',this.get_token)
       .then((response)=>{
         let share= ""
         for(let i = 0; i<response.data.data.length;i++){
@@ -48,6 +48,9 @@ export default {
     get_api_rails() {
       return this.$store.getters.get_API_URL
     },
+    get_token(){
+      return this.$store.getters.get_ACCESS_TOKEN
+    }
   },
   props:{
     uid: String
