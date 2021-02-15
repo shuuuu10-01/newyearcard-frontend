@@ -27,9 +27,8 @@ export default {
   },
   methods:{
     signout () {
-      firebase.auth().onAuthStateChanged( (user) => {
+      firebase.auth().onAuthStateChanged(() => {
         firebase.auth().signOut().then(()=>{
-          console.log(user.displayName+"ログアウトしました");
           this.$store.dispatch("logoutUser");
           this.$router.push('/')
         })
@@ -38,7 +37,6 @@ export default {
   },
   mounted: async function() {
     await this.$store.dispatch("auth");
-    console.log("auth")
     if(!this.get_login){
       alert("ログインしてください")
       this.$router.push('/')

@@ -62,7 +62,6 @@ export default {
         height: (this.drag.height/this.video.height)*100,
         select: true
       }
-      console.log(this.pos)
       this.$store.dispatch("setPosition",this.pos)
     },
     setVideo(){

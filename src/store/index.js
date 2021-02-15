@@ -98,7 +98,6 @@ export default new Vuex.Store({
     async auth({ commit }) {
       return new Promise(resolve => {
         firebase.auth().onAuthStateChanged(currentUser => {
-          console.log(currentUser)
           if (currentUser) {
             commit("setUser", currentUser);
           } else {

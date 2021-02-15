@@ -13,7 +13,6 @@ export default {
       const Path =  encodeURI(path)
       const text ="年賀状をWebアプリで作ってみた"
       const Text = encodeURI(text)
-      console.log(Path)
       return href +Text+"%0a"+Path
     }
   }

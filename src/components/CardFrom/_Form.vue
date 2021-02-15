@@ -108,17 +108,6 @@ export default {
           }
         }
       }
-      console.log("c-DM")
-      const data = {
-        text: this.get_form.text,
-        uid: this.get_uid,
-        gif: this.get_form.gif,
-        share: this.card.status,
-        display_name: this.get_displayName,
-        DM_id: this.card.dm,
-
-      }
-      console.log(data)
       if(confirm("年賀状を作成してもよろしいですか？")){
         this.loading = true
         const data = {
@@ -143,7 +132,6 @@ export default {
           }else {
             alert("エラーが発生しました。")
             this.loading = false
-            console.log(response)
           }
         }).catch (()=>{
           alert("エラーが発生しました。")

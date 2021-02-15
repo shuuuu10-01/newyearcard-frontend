@@ -14,9 +14,7 @@ export default {
           display_name: this.display_name,
           public_uid: this.$route.params.id
         }
-        console.log(data)
-        this.axios.post(this.get_recieve+'add',data,this.get_token).then((response)=>{
-          console.log(response)
+        this.axios.post(this.get_recieve+'add',data,this.get_token).then(()=>{
         }).catch(()=>{
           alert("すでに受け取っています")
         })

@@ -94,7 +94,6 @@ export default {
             select: true
           }
           this.$store.dispatch("setPosition",this.position)
-          // console.log(this.position)
         } else {
           this.position = {
             select:false
@@ -125,7 +124,6 @@ export default {
       }
     },
     async checkFriend() { //cardを作成した人のuidとみる人のuidで関係性を確認
-    console.log("startCheck")
       if(this.get_uid !="") {
         await this.axios.get(this.get_api_twitter+this.card.uid+'/'+this.get_uid+'/friendships',this.get_token)
         .then(response => {
