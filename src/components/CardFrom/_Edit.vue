@@ -131,7 +131,7 @@ export default {
       }
     },
     checkDM() {
-      return this.axios.get(this.get_api_twitter+this.get_uid+"/"+this.card.dm+"/check",this.get_token).then(response=>{
+      return this.axios.get(this.get_api_twitter+this.get_uid+"/"+this.card.dm+"/check").then(response=>{
         if(response.data.relationship.source.followed_by==true){
           this.card.status = response.data.relationship.target.id_str
           return true
@@ -150,7 +150,7 @@ export default {
       })
     },
     showApi () {
-      return this.axios.get(this.get_api_rails+this.$route.params.id+'/show',this.get_token)
+      return this.axios.get(this.get_api_rails+this.$route.params.id+'/show')
       .then((response) => {
         this.updateText(response.data.data.text)
         this.$store.dispatch("setGif",response.data.data.gif)

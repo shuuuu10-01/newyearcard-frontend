@@ -111,7 +111,6 @@ export default new Vuex.Store({
               uid: currentUser.providerData[0].uid,
               idToken: idToken
             }
-            console.log("axios", data)
             axios.post(process.env.VUE_APP_RAILS_API_SET, data).then(() => {
               console.log("dsf")
               resolve()
