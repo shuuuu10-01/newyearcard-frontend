@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from 'firebase'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
@@ -11,6 +12,7 @@ export default new Vuex.Store({
       displayName: "",
       photoURL: "",
       uid: "",
+      idToken: ""
     },
     form: {
       text:"",
@@ -39,6 +41,9 @@ export default new Vuex.Store({
         state.isLogin = false;
       }
     },
+    setToken(state,idToken){
+      state.user.idToken = idToken
+    },
     setGif(state,value){ //gif画像の選択結果の保存
       state.form.gif = value
     },
@@ -53,6 +58,7 @@ export default new Vuex.Store({
       state.user.photoURL="";
       state.user.uid="";
       state.isLogin = false;
+      state.user.idToken+"";
     },
     setPosition(state,value){
       state.position.top = value.top
@@ -90,20 +96,27 @@ export default new Vuex.Store({
     get_API_RECIEVE(){
       return process.env.VUE_APP_RAILS_API_RECIEVE
     },
-    get_ACCESS_TOKEN(){
-      return {headers:{'token': process.env.VUE_APP_ACCESS_TOKEN}}
+    get_ACCESS_TOKEN(state){
+      return {headers:{'idToken': state.user.idToken}}
     }
   },
   actions: {
     async auth({ commit }) {
       return new Promise(resolve => {
         firebase.auth().onAuthStateChanged(currentUser => {
-          if (currentUser) {
+          currentUser.getIdToken(true).then(function (idToken) {
             commit("setUser", currentUser);
-          } else {
-            commit("logoutUser");
-          }
-          resolve()
+            commit("setToken", idToken);
+            const data = {
+              uid: currentUser.providerData[0].uid,
+              idToken: idToken
+            }
+            console.log("axios", data)
+            axios.post(process.env.VUE_APP_RAILS_API_SET, data).then(() => {
+              console.log("dsf")
+              resolve()
+            })
+          })
         })
       })
     },
