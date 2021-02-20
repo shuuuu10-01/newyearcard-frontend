@@ -23,11 +23,10 @@ Vue.use(VueClipboard)
 
 const app = () => {
   firebase.auth().onAuthStateChanged((currentUser) => {
-    if (currentUser) {
+    currentUser.getIdToken(true).then(function (idToken){
       store.commit("setUser", currentUser);
-    } else {
-      store.commit("setUser", null);
-    }
+      store.commit("setToken",idToken);
+    })
   }),
   new Vue({
     router,

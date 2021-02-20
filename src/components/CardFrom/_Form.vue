@@ -123,7 +123,7 @@ export default {
           height: this.get_position.height,
           select: this.get_position.select
         }
-        this.axios.post(this.get_API_URL+'create',data,this.get_token)
+        this.axios.post(this.get_API_URL+'create',data)
         .then(response => {
           if(response.data.status == "SUCCESS"){
           //作ったカードのページへ遷移
@@ -140,7 +140,7 @@ export default {
       }
     },
     checkDM() {
-      return this.axios.get(this.get_api_twitter+this.get_uid+"/"+this.card.dm+"/check",this.get_token).then(response=>{
+      return this.axios.get(this.get_api_twitter+this.get_uid+"/"+this.card.dm+"/check").then(response=>{
         if(response.data.relationship.source.followed_by==true){
           this.card.status = response.data.relationship.target.id_str
           return true
@@ -195,9 +195,6 @@ export default {
     get_position() {
       return this.$store.getters.get_position
     },
-    get_token(){
-      return this.$store.getters.get_ACCESS_TOKEN
-    }
   }
 }
 </script>
