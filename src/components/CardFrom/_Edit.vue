@@ -104,6 +104,7 @@ export default {
           }
         }
       }
+      this.$store.dispatch("auth");
       if(confirm("年賀状を上書き保存してもよろしいですか？")){
         this.loading = true
         const data = {

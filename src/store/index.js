@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from 'firebase'
-import axios from 'axios'
 
 Vue.use(Vuex)
 
@@ -107,14 +106,7 @@ export default new Vuex.Store({
           currentUser.getIdToken(true).then(function (idToken) {
             commit("setUser", currentUser);
             commit("setToken", idToken);
-            const data = {
-              uid: currentUser.providerData[0].uid,
-              idToken: idToken
-            }
-            axios.post(process.env.VUE_APP_RAILS_API_SET, data).then(() => {
-              console.log("dsf")
-              resolve()
-            })
+            resolve()
           })
         })
       })
